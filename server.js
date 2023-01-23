@@ -52,5 +52,5 @@ app.all('*', (req, res) => {
 //      App Listener        //
 //////////////////////////////
 app.listen(process.env.PORT, () => {
-    console.log(`listening on port ${process.env.PORT} \nCTRL+C TO CLOSE SERVER`)
+    console.log(`[listening to PORT: ${process.env.PORT}] \n< CTRL+C > TO CLOSE SERVER`)
 })
