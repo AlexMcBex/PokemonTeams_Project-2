@@ -1,7 +1,7 @@
 // Import Dependencies
 const express = require('express')
 const Pokemon = require('../models/team')
-const Team = require('./models/team')
+const Team = require('../models/team')
 
 // Create router
 const router = express.Router()
