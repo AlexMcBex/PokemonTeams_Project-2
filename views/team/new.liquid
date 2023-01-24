@@ -1,37 +1,65 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 <div class="container-sm">
-    <form action="/examples" method="POST">
+    <form action="/team" method="POST">
         <fieldset>
-            <legend>Create New Example</legend>
-            <label class="form-label">Title: </label>
+            <legend>Create New Team</legend>
+            <hr>
+            <label class="form-label">Name: </label>
             <input 
                 type="text" 
-                name="title" 
-                placeholder="enter example title"
+                name="name" 
+                placeholder="Name of the Team"
                 class="form-control"
+                required
             >
-            <label class="form-label">Body:</label>
+            <label class="form-label">Pokemon n. 1:</label>
             <input 
                 type="text" 
-                name="body" 
-                placeholder="enter example body" 
+                name="pokemon1" 
+                placeholder="enter 1st Pokemon" 
+                class="form-control"
+                required
+            >
+            <label class="form-label">Pokemon n. 2:</label>
+            <input 
+                type="text" 
+                name="pokemon2" 
+                placeholder="enter 2nd Pokemon" 
                 class="form-control"
             >
-            <label class="form-label">Amount:</label>
+            <label class="form-label">Pokemon n. 3:</label>
             <input 
-                type="number" 
-                name="amount" 
+                type="text" 
+                name="pokemon3" 
+                placeholder="enter 3rd Pokemon" 
                 class="form-control"
             >
-            <label class="form-label">Ready:</label>
+            <label class="form-label">Pokemon n. 4:</label>
             <input 
-                type="checkbox" 
-                name="ready" 
-                class="form-check-input"
+                type="text" 
+                name="pokemon4" 
+                placeholder="enter 4th Pokemon" 
+                class="form-control"
+            >
+            <label class="form-label">Pokemon n. 5:</label>
+            <input 
+                type="text" 
+                name="pokemon5" 
+                placeholder="enter 5th Pokemon" 
+                class="form-control"
+            >
+            <label class="form-label">Pokemon n. 6:</label>
+            <input 
+                type="text" 
+                name="pokemon6" 
+                placeholder="enter 6th Pokemon" 
+                class="form-control"
+            >
             >
         </fieldset>
-        <input type="submit" value="Create New Example" class="btn btn-success">
+        <input type="submit" value="Create New Pokemon" class="btn btn-success">
+        <input type="reset" value="Reset" class="btn btn-warning">
     </form>
 </div>
 {% endblock %}

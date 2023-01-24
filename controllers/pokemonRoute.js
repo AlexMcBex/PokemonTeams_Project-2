@@ -26,10 +26,15 @@ router.use((req, res, next) => {
 // index ALL
 router.get('/', (req, res) => {
 	Pokemon.find({})
-		.then(pokemons => {
+		.then(async pokemons => {
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
-			
+			// for (let i= 0; i < pokemons.length; i++){
+			// 	pokemons[i].name = pokemons[i].name.toLowerCase()
+			// }
+			// console.log(pokemons)
+			// const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon`)
+			// const pokemonData = pokemonInfo.data
 			res.render('pokemon/index', { pokemons, username, loggedIn })
 		})
 		.catch(error => {
@@ -97,15 +102,20 @@ router.put('/:id/edit', (req, res) => {
 })
 
 // show route
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
 	const pokemonId = req.params.id
 	Pokemon.findById(pokemonId)
-		.then(pokemon => {
+		.then(async pokemon => {
+			const pokemonName = pokemon.name.toLowerCase()
+			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
+			const pokemonData = pokemonInfo.data
+			// console.log(pokemonData)
             const {username, loggedIn, userId} = req.session
-			res.render('pokemon/show', { pokemon, username, loggedIn, userId })
+			res.render('pokemon/show', { pokemon, username, pokemonData, loggedIn, userId })
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
+			console.log(error)
 		})
 })
 
