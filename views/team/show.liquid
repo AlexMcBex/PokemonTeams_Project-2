@@ -3,24 +3,20 @@
 <div class="container-md">
     <article>
         <h2>
-            {{ example.title }} -
-            {% if example.ready %}
-            Ready
-            {% else %}
-            Not Ready
-            {%endif%}
+            {{ team.name }} 
         </h2>
-        <h3>Amount: {{ example.amount }}</h3>
-        <h6>Body: {{ example.body }}</h6>
-        {% if example.owner == userId %}
-        <div class="btn-group">
-
-            <a href="/examples/{{ example.id }}/edit" class="btn btn-primary">Edit</a>
-            <form action="/examples/{{ example.id }}?_method=DELETE" method="POST">
-                <input type="submit" value="Delete" class="btn btn-danger">
+        <h5>{{ team.pokemon1 }}</h5>
+        <h5>{{ team.pokemon2 }}</h5>
+        <h5>{{ team.pokemon3 }}</h5>
+        <h5>{{ team.pokemon4 }}</h5>
+        <h5>{{ team.pokemon5 }}</h5>
+        <h5>{{ team.pokemon6 }}</h5>
+    
+            <h3><a href="/team/{{ team.id }}/edit" class="btn btn-primary">Edit {{ team.name }}</a> <form action="/examples/{{ example.id }}?_method=DELETE" method="POST">
+                <input type="submit" value="Delete Team" class="btn btn-danger"></h3>
             </form>
         </div>
-        {% endif %}
     </article>
+    <small>Team id: {{ team.id }} </small>
 </div>
 {% endblock %}
