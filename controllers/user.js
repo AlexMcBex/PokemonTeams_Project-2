@@ -4,6 +4,8 @@
 const express = require('express')
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
+const Pokemon = require('../models/pokemon')
+const Team = require('../models/team')
 
 ////////////////////////////////////////////
 // Create router

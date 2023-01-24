@@ -59,7 +59,6 @@ router.get('/new', (req, res) => {
 // create -> POST route that actually calls the db and makes a new document
 router.post('/', (req, res) => {
 	req.body.ready = req.body.ready === 'on' ? true : false
-
 	req.body.owner = req.session.userId
 	Pokemon.create(req.body)
 		.then(pokemon => {
@@ -74,10 +73,11 @@ router.post('/', (req, res) => {
 // edit route -> GET that takes us to the edit form view
 router.get('/:id/edit', (req, res) => {
 	// we need to get the id
+	const { username, userId, loggedIn } = req.session
 	const pokemonId = req.params.id
 	Pokemon.findById(pokemonId)
 		.then(pokemon => {
-			res.render('pokemon/edit', { pokemon })
+			res.render('pokemon/edit', { pokemon, ...req.session })
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
@@ -85,13 +85,11 @@ router.get('/:id/edit', (req, res) => {
 })
 
 // update route
-router.put('/:id', (req, res) => {
+router.put('/:id/edit', (req, res) => {
 	const pokemonId = req.params.id
-	req.body.ready = req.body.ready === 'on' ? true : false
-
 	Pokemon.findByIdAndUpdate(pokemonId, req.body, { new: true })
 		.then(pokemon => {
-			res.redirect(`/pokemon/${pokemon.id}`)
+			res.redirect(`/pokemon/${pokemonId}`)
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)

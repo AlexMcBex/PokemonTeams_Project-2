@@ -1,0 +1,37 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  <div>
+    <h2 class="display-6 ms-3 mt-3">Hello {{ username }} !                                        </h2><a href="/pokemon/mine" class="btn btn-light ms-3">Pokemons</a>
+    <a href="/team/mine" class="btn btn-light ms-3">Teams</a>
+    <a href="/auth/logout" class="btn btn-danger ms-3">Log Out</a>
+    <hr>
+    <div class="row">
+       <!-- <a href="/pokemon/new" class="btn btn-primary me-3 ms-3 mb-3" style="display: inline; width: 300px;">New Pokemon</a>
+        <a href="/pokemon/search" class="btn btn-primary me-3 ms-3 mb-3" style="display: inline; width: 300px; ">Search</a><hr> -->
+        <h3 class="ms-3">Your Favorite Pokemons</h3> 
+      {% for pokemon in pokemons %}
+        <div class="card ms-3" style="width: 18rem;">
+          <h4 class="card-header">{{ pokemon.name }}</h4>
+          <div class="card-body">
+            <h5 class="card-title">
+              LVL: {{ pokemon.level }}
+            </h5>
+            <p class="card-text">
+              Type: {{ pokemon.type1 }} {{ pokemon.type2 }}
+            </p>
+            <a href="/pokemon/{{ pokemon.id }}" class="btn btn-info">
+              View {{ pokemon.name }}
+            </a>
+            <a href="/pokemon/{{ pokemon.id }}/edit" class="btn btn-info">
+              Edit
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+
+      <hr class="mt-3 mb-3">
+
+      <h3 class="ms-3">Your Teams</h3>
+    </div>
+  </div>
+{% endblock %}
