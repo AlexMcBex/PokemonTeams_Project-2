@@ -1,0 +1,25 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  <div>
+    <h2 class="display-6">All Pokemon</h2>
+    <div class="row">
+      <h3><a href="/pokemon/new" class="btn btn-primary ms-3">New Pokemon</a> <a href="/pokemon/search" class="btn btn-primary ms-3">Search</a></h3>
+      {% for pokemon in pokemons %}
+        <div class="card ms-3" style="width: 18rem;">
+          <h4 class="card-header">{{ pokemon.name }} </h4>
+          <div class="card-body">
+            <h5 class="card-title">
+              LVL: {{ pokemon.level }}
+            </h5>
+            <p class="card-text">
+              Type: {{ pokemon.type1 }} {{ pokemon.type2 }}
+            </p>
+            <a href="/pokemon/{{ pokemon.id }}" class="btn btn-info">
+              View {{ pokemon.name }}
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

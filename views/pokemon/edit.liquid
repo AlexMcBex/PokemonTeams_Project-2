@@ -1,0 +1,48 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+<div class="container-sm">
+    <form action="/pokemon?_method=PUT" method="POST">
+    <fieldset>
+        <legend>Edit {{ pokemon.name }}</legend>
+        <label class="form-label mt-2">Name: </label>
+        <input 
+            type="text" 
+            name="name" 
+            placeholder="Pokemon Name"
+            class="form-control"
+            value="{{ pokemon.name }} "
+            required
+        >
+        <label class="form-label mt-2">Type 1:</label>
+        <input 
+            type="text" 
+            name="type1" 
+            placeholder="enter 1st Type" 
+            class="form-control"
+            value="{{ pokemon.type1}} "
+            required
+        >
+        <label class="form-label mt-2">Type 2:</label>
+        <input 
+            type="text" 
+            name="type2" 
+            placeholder="enter 2nd Type" 
+            class="form-control"
+            value="{{ pokemon.type2 }} "
+        >
+        <label class="form-label mt-2">Level:</label>
+        <input 
+            type="number" 
+            name="level" 
+            class="form-control"
+            placeholder="Pokemon Level"
+            value="{{ pokemon.level }} "
+            required
+        >
+    </fieldset>
+        <input type="submit" value="Edit {{ pokemon.name }}" class="btn btn-success mt-3">
+        
+        <input type="reset" value="Reset" class="btn btn-warning mt-3">
+    </form>
+</div>
+{% endblock %}

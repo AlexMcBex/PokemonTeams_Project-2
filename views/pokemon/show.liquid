@@ -1,0 +1,24 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+<div class="container-md">
+    <article>
+        <h1>
+            <img src="{{ pokemonData.sprites.front_default }}" alt="sprite">  {{ pokemon.name }}
+            </h1> 
+        <img src="{{ pokemonData.sprites.other.official-artwork.front_default }}" alt="artwork">
+        <h4>LVL: {{ pokemon.level }}</h4>
+        <h3>Type: {{ pokemonData.types.0.type.name }}  {{ pokemonData.types.1.type.name }}</h3>
+        {% if pokemon.owner == userId %}
+        <small>Created by: {{ pokemon.owner }}</small><br>
+        <div class="btn-group">
+
+            <a href="/pokemon/{{ pokemon.id }}/edit" class="btn btn-primary">Edit</a>
+            <form action="/pokemon/{{ pokemon.id }}?_method=DELETE" method="POST">
+                <input type="submit" value="Delete" class="btn btn-danger">
+            </form>
+        </div>
+        {% endif %}
+    </article>
+    <small>PKMN id: {{ pokemon.id }}</small>
+</div>
+{% endblock %}
