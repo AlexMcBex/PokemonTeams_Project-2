@@ -3,7 +3,6 @@ const express = require('express')
 const Pokemon = require('../models/pokemon')
 const axios = require('axios')
 require('dotenv').config()
-const Team = require('../models/team')
 
 // Create router
 const router = express.Router()

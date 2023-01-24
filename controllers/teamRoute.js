@@ -1,6 +1,5 @@
 // Import Dependencies
 const express = require('express')
-const Pokemon = require('../models/team')
 const Team = require('../models/team')
 
 // Create router
@@ -28,7 +27,6 @@ router.get('/', (req, res) => {
 		.then(teams => {
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
-			
 			res.render('team/index', { teams, username, loggedIn })
 		})
 		.catch(error => {

@@ -13,7 +13,7 @@ const pokemonSchema = new Schema(
 		type1: { type: String, required: true },
 		type2: { type: String },
         level: { type: Number, required: true },
-		canEvolve: { type: Boolean, required: true },
+		canEvolve: { type: Boolean  },
 		sprite: {type: String },
 		owner: {
 			type: Schema.Types.ObjectID,

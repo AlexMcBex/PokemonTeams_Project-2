@@ -3,21 +3,18 @@
     <div class="container-fluid">
         <a href="/" class="navbar-brand bg-light text-danger p-2">Pokemon Teams</a>
         {% if loggedIn %}
-        <a href="/pokemon/mine" class="nav-link text-light">Hello {{ username }} </a>
+        <a href="/pokemon/mine" class="nav-link text-info me-3">Hello {{ username }} </a>
         {% endif %}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             {% if loggedIn %}
-                <a href="/pokemon" class="nav-link text-light me-3">View All pkmn</a>
-                <a href="/teams" class="nav-link text-light me-3">View All Teams</a>
+                <a href="/pokemon" class="nav-link text-light me-3">Pokemon</a>
+                <a href="/team" class="nav-link text-light me-3">Teams</a>
                 <a href="/pokemon/new" class="nav-link text-light me-3">New</a>
-                <a href="/pokemon/mine" class="nav-link text-light me-3">My Pokemon</a>
                 <a href="/auth/logout" class="nav-link text-light me-3">Log Out</a>
             {% else %}
-                <a href="/pokemon" class="nav-link text-light me-3">View All pkmn</a>
-                <a href="/teams" class="nav-link text-light me-3">View All Teams</a>
                 <a href="/auth/signup" class="nav-link text-light me-3">Sign Up</a>
                 <a href="/auth/login" class="nav-link text-light me-3">Sign In</a>
             {% endif %}

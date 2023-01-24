@@ -8,7 +8,7 @@ const UserRouter = require('./controllers/user')
 const User = require("./models/user")
 const TeamRouter = require('./controllers/teamRoute')
 const Team = require('./models/team')
-const PokemonRouter = require('./controllers/teamRoute')
+const PokemonRouter = require('./controllers/pokemonRoute')
 const Pokemon = require('./models/pokemon')
 // SEE MORE DEPENDENCIES IN ./utils/middleware.js
 // user and resource routes linked in ./utils/middleware.js
@@ -26,7 +26,7 @@ middleware(app)
 
 app.use('/auth', UserRouter)
 app.use('/pokemon', PokemonRouter)
-app.use('/teams', TeamRouter)
+app.use('/team', TeamRouter)
 
 
 
