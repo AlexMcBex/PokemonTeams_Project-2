@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "Play";
+    src: url("../font/Play-Regular.ttf");
+}
 body {
     background-color: rgb(195, 183, 183);
+    font-family: "Play";
 }
+
