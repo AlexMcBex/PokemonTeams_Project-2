@@ -65,10 +65,23 @@ router.get('/Dex/:name', async (req, res) => {
 			const pokemonName = req.params.name.toLowerCase()
 			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
 			const pokemonData = pokemonInfo.data
+			pokemonPre = pokemonData.id -1
+			pokemonNext = pokemonData.id + 1
 			// console.log(pokemonData)
             const {username, loggedIn, userId} = req.session
-			res.render('pokemon/DexShow', { username, pokemonData, loggedIn, userId })
+			res.render('pokemon/DexShow', { username, pokemonData, pokemonPre, pokemonNext, loggedIn, userId })
 		})
+				//POKEDEX SHOW route
+router.get('/Dex/:id', async (req, res) => {
+	const pokemonId = req.params.name.toLowerCase()
+	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonId}`)
+	const pokemonData = pokemonInfo.data
+	pokemonPre = pokemonData.id -1
+	pokemonNext = pokemonData.id + 1
+	// console.log(pokemonData)
+	const {username, loggedIn, userId} = req.session
+	res.render('pokemon/DexShow', { username, pokemonData, pokemonPre, pokemonNext, loggedIn, userId })
+})
 
 // index that shows only the user's pokemon
 router.get('/mine', (req, res) => {
