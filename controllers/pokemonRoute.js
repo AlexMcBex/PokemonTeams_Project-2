@@ -89,16 +89,48 @@ router.get('/:id/edit', (req, res) => {
 		})
 })
 
-// update route
-router.put('/:id/edit', (req, res) => {
-	const pokemonId = req.params.id
-	Pokemon.findByIdAndUpdate(pokemonId, req.body, { new: true })
-		.then(pokemon => {
-			res.redirect(`/pokemon/${pokemonId}`)
-		})
-		.catch((error) => {
-			res.redirect(`/error?error=${error}`)
-		})
+// // update route
+// router.put('/:id/edit', (req, res) => {
+// 	const pokemonId = req.params.id
+// 	Pokemon.findByIdAndUpdate(pokemonId, req.body, { new: true })
+// 		.then(pokemon => {
+// 			res.redirect(`/pokemon/${pokemonId}`)
+// 		})
+// 		.catch((error) => {
+// 			res.redirect(`/error?error=${error}`)
+// 		})
+// })
+
+// GET request -> edit route
+router.get('/:id/edit', (req, res) => {
+    const pokemonId = req.params.id
+    Pokemon.findById(pokemonId)
+        .then(pokemon => {
+            res.render('pokemon/edit', { pokemon, ...req.session })
+        })
+        .catch(err => {
+            res.redirect(`/error?error=${err}`)
+        })
+})
+
+// PUT route -> edit route
+router.put('/:id', (req, res) => {
+    const id = req.params.id
+    Pokemon.findById(id)
+        .then(pokemon => {
+            if (pokemon.owner == req.session.userId) {
+                return pokemon.updateOne(req.body)
+            } else {
+                res.redirect(`/error?error=You%20Are%20not%20allowed%20to%20edit%20this%20Pokemon`)
+            }
+        })
+        .then(() => {
+            res.redirect(`/pokemon/${id}`)
+        })
+        .catch(err => {
+            console.log(err)
+            res.redirect(`/error?error=${err}`)
+        })
 })
 
 // show route

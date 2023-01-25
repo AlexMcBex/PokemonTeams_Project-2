@@ -28,7 +28,6 @@ router.use((req, res, next) => {
 
 // index ALL
 router.get('/', (req, res) => {
-	Example.find({})
     const { username, userId, loggedIn } = req.session
 	Pokemon.find({ owner: userId })
 		.then(pokemons => {
@@ -38,6 +37,17 @@ router.get('/', (req, res) => {
 			res.redirect(`/error?error=${error}`)
 		})
 })
+
+// router.get('/', (req, res) => {
+//     const { username, userId, loggedIn } = req.session
+// 	Team.find({ owner: userId })
+// 		.then(teams => {
+// 			res.render('profile/profile', { teams, username, loggedIn })
+// 		})
+// 		.catch(error => {
+// 			res.redirect(`/error?error=${error}`)
+// 		})
+// })
 
 // Export the Router
 module.exports = router

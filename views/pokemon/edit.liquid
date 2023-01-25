@@ -1,7 +1,7 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 <div class="container-sm">
-    <form action="/pokemon?_method=PUT" method="POST">
+    <form action="/pokemon/{{ pokemon.id }}?_method=PUT" method="POST">
     <fieldset>
         <legend>Edit {{ pokemon.name }}</legend>
         <label class="form-label mt-2">Name: </label>

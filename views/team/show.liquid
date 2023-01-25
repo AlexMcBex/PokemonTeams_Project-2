@@ -2,18 +2,18 @@
 {% block content %}
 <div class="container-md">
     <article>
-        <h2>
-            {{ team.name }} 
-        </h2>
+        <h2>Team {{ team.name }} </h2>
         <h5>{{ team.pokemon1 }}</h5>
         <h5>{{ team.pokemon2 }}</h5>
         <h5>{{ team.pokemon3 }}</h5>
         <h5>{{ team.pokemon4 }}</h5>
         <h5>{{ team.pokemon5 }}</h5>
         <h5>{{ team.pokemon6 }}</h5>
-    
-            <h3><a href="/team/{{ team.id }}/edit" class="btn btn-primary">Edit {{ team.name }}</a> <form action="/examples/{{ example.id }}?_method=DELETE" method="POST">
+            {% if team.owner == userId %}
+            <h3><a href="/team/{{ team.id }}/edit" class="btn btn-primary">Edit {{ team.name }}</a> 
+            <form action="/team/{{ team.id }}?_method=DELETE" method="POST">
                 <input type="submit" value="Delete Team" class="btn btn-danger"></h3>
+                {% endif  %}
             </form>
         </div>
     </article>

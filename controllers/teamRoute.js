@@ -114,7 +114,7 @@ router.delete('/:id', (req, res) => {
 	const teamId = req.params.id
 	Team.findByIdAndRemove(teamId)
 		.then(team => {
-			res.redirect('/team')
+			res.redirect('/profile')
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
