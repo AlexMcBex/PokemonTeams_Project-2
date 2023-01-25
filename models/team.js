@@ -11,15 +11,14 @@ const teamSchema = new Schema(
 	{
 		name: { type: String, required: true },
 		sprite: { type: String },
-		pokemon1: {type: String, required: true},
-		pokemon2: {type: String},
-		pokemon3: {type: String},
-		pokemon4: {type: String},
-		pokemon5: {type: String},
-		pokemon6: {type: String},
+		pokemons: [ {
+			type: Schema.Types.ObjectID,
+			ref: 'Pokemon'
+		}
+		],
 		owner: {
 			type: Schema.Types.ObjectID,
-			ref: 'User',
+			ref: 'User'
 		},
         // pokemons: [pokemonSchema],
 	},

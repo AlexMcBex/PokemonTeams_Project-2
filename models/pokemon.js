@@ -12,16 +12,10 @@ const pokemonSchema = new Schema(
 		name: { type: String, required: true },
 		type1: { type: String, required: true },
 		type2: { type: String },
-        level: { type: Number, required: true },
-		canEvolve: { type: Boolean  },
 		sprite: {type: String },
 		owner: {
 			type: Schema.Types.ObjectID,
 			ref: 'User',
-		},
-		team: {
-			type: Schema.Types.ObjectID,
-			ref: 'Team',
 		}
 	},
 	{ timestamps: true }

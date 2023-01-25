@@ -1,21 +1,25 @@
 {% layout 'layout.liquid' %}
 {% block content %}
   <div>
-    <h2 class="display-6">All Pokemon</h2>
+    <img class="ms-3 mt-3 " src="https://i.pinimg.com/originals/bd/cd/20/bdcd20f5411ee5785889542d303ad4cb.png" alt="logo" style="width: 300px;"> <h2 class="mt-1" style="display: inline;"><i>    {{ offNum }} - {{ pokemonNext }}</i></h2> 
+    {% if offNum > 0 %}
+      <a href="/pokemon/Dex?offset={{ pokemonPre }}&limit=35" class="btn btn-warning ms-3" style="width: 200px; ">Previous Page</a>
+      {% endif %}
+      <a href="/pokemon/Dex?offset={{ pokemonNext }}&limit=35" class="btn btn-warning ms-3" style="width: 200px; ">Next Page</a>
     <div class="row">
-      {% for pkmn in pokemonData limit: 50 %}
-        <div class="card ms-3 mb-3" style="width: 15rem;">
-          <h4 class="card-header"style="text-transform: capitalize;">{{ pkmn.indexOf }} - {{ pkmn.name }} </h4>
+      {% for pkmn in pokemonData %}
+        <div class="card ps-0 ms-3 mb-3" style="width: 16rem; border-radius: 200px; height: 16rem; text-align: center;">
+          <h4 class="card-title pt-4"style="text-transform: capitalize; border-radius: 200px 200px 0 0; background-color: red; color: white; height: 8rem; width: 16rem">{{ pkmn.name }} </h4>
           <div class="card-body">
             <p class="card-text">
             </p>
-            <a href="/pokemon/Dex/{{ pkmn.name }}" class="btn btn-info">
-              View {{ pkmn.name }}
+            <a style="text-transform: capitalize;" href="/pokemon/Dex/{{ pkmn.name }}" class="btn btn-info">
+              Info
             </a>
           </div>
         </div>
       {% endfor %}
-      <a href="/pokemon/Dex?limit=100" class="btn btn-info">Show more</a>
-    </div>
+      <br>
+      </div>
   </div>
 {% endblock %}

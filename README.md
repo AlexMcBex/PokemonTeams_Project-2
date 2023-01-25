@@ -1,8 +1,7 @@
 # POKEMON TEAMS
 
 ## Overview
-Pokemon Teams is a full-stack application Inspired by my love for pixel art and the Pokemon franchise. It allows the users to browse several informations on over 800 Pokemons (getting them from the 
-- [PokeAPI](https://pokeapi.co)) and, once logged in with their account, make their own teams using the informations they found.
+Pokemon Teams is a full-stack application Inspired by my love for pixel art and the Pokemon franchise. It allows the users to browse several informations on over 800 Pokemons (getting them from the [PokeAPI](https://pokeapi.co)) and, once logged in with their account, make their own teams using the informations they found.
 The User should also be able to make lists of his favorite pokemons and select his avatar from a list of trainers avatars (choosing it from the trainer sprites avaiable on [bulbagarden.net](https://archives.bulbagarden.net))
 
 ## Technologies used

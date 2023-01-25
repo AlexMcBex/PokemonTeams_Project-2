@@ -29,9 +29,17 @@ router.use((req, res, next) => {
 // index ALL
 router.get('/', (req, res) => {
     const { username, userId, loggedIn } = req.session
+	let userPokes  
 	Pokemon.find({ owner: userId })
 		.then(pokemons => {
-			res.render('profile/profile', { pokemons, username, loggedIn })
+			userPokes = pokemons
+			Team.find({ owner: userId })
+				.then( teams => {
+					res.render('profile/profile', { pokemons: userPokes, teams, username, loggedIn })
+				})
+				.catch(err => {
+					res.redirect(`/error?error=${error}`)
+				})
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
