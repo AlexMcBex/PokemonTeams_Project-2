@@ -42,6 +42,26 @@ router.get('/', (req, res) => {
 		})
 })
 
+// POKEDEX ALL -> pokeapi all pokemons
+router.get('/Dex', async (req, res) => {
+			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon?offset=0&limit=553`)
+			const pokemonData = pokemonInfo.data.results
+			// pokemonData.forEach(pkmn => console.log(pkmn.url))
+			// const pokemonShow =(`${pokemonData[252].url}`)
+			// console.log(pokemonShow) 
+			res.render('pokemon/Dex', { pokemonData, ...req.session })
+		})
+
+		//POKEDEX SHOW route
+router.get('/Dex/:name', async (req, res) => {
+			const pokemonName = req.params.name.toLowerCase()
+			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
+			const pokemonData = pokemonInfo.data
+			// console.log(pokemonData)
+            const {username, loggedIn, userId} = req.session
+			res.render('pokemon/DexShow', { username, pokemonData, loggedIn, userId })
+		})
+
 // index that shows only the user's pokemon
 router.get('/mine', (req, res) => {
     // destructure user info from req.session

@@ -1,0 +1,21 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  <div>
+    <h2 class="display-6">All Pokemon</h2>
+    <div class="row">
+      {% for pkmn in pokemonData limit: 50 %}
+        <div class="card ms-3 mb-3" style="width: 15rem;">
+          <h4 class="card-header"style="text-transform: capitalize;">{{ pkmn.indexOf }} - {{ pkmn.name }} </h4>
+          <div class="card-body">
+            <p class="card-text">
+            </p>
+            <a href="/pokemon/Dex/{{ pkmn.name }}" class="btn btn-info">
+              View {{ pkmn.name }}
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+      <a href="/pokemon/Dex?limit=100" class="btn btn-info">Show more</a>
+    </div>
+  </div>
+{% endblock %}
