@@ -4,10 +4,14 @@
     <article>
         <h2>Team {{ team.name }} </h2>
         <h5>{{ team.description }}</h5>
+            {% for pokemon in team.pokemons %}
+            <div class="card"><h2 style="text-transform: capitalize; display:inline" ><img src="{{ pokemon.sprite }}" alt="">{{ pokemon.name }}</h2> <h5 style="display:inline; text-transform: capitalize;"> {{ pokemon.type1 }} {{ pokemon.type2 }}</h5></div>
+            {% endfor %}
             {% if team.owner == userId %}
-            <h3><a href="/team/{{ team.id }}/edit" class="btn btn-primary">Edit {{ team.name }}</a> 
+            <h3><a href="/team/{{ team.id }}/addPokemon/?offset=0&limit=27" class="btn btn-primary">add Pokemons to team</a> 
+            <a href="/team/{{ team.id }}/edit" class="btn btn-primary">Edit {{ team.name }}</a> 
             <form action="/team/{{ team.id }}?_method=DELETE" method="POST">
-                <input type="submit" value="Delete Team" class="btn btn-danger"></h3>
+                <input type="submit" value="Delete Team '{{team.name}}'" class="btn btn-danger mt-2"></h3>
                 {% endif  %}
             </form>
         </div>

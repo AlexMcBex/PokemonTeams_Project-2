@@ -36,6 +36,7 @@ router.get('/', (req, res) => {
 			Team.find({ owner: userId })
 				.then( teams => {
 					res.render('profile/profile', { pokemons: userPokes, teams, username, loggedIn })
+					console.log(teams)
 				})
 				.catch(err => {
 					res.redirect(`/error?error=${error}`)

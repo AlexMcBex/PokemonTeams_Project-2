@@ -2,6 +2,7 @@
 const express = require('express')
 const Team = require('../models/team')
 const axios = require('axios')
+const Pokemon = require('../models/pokemon')
 
 // Create router
 const router = express.Router()
@@ -42,6 +43,10 @@ router.get('/mine', (req, res) => {
 	Team.find({ owner: userId })
 		.then(teams => {
 			res.render('team/index', { teams, username, loggedIn })
+			.catch(err =>{
+				res.sendStatus(404)
+				console.log(err)
+			})
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
@@ -54,10 +59,62 @@ router.get('/new', (req, res) => {
 	res.render('team/new', { username, loggedIn })
 })
 
+// GET - add pokemon to the team
+router.get('/:id/addPokemon/', async (req, res) => {		
+			const offset = req.query.offset
+			const limit = req.query.limit
+			const teamId = req.params.id
+			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/?offset=${offset}&limit=${limit}`)
+			const pokemonData = pokemonInfo.data.results
+			const limitNum = Number(limit)
+			const offNum = Number(offset)
+			const pokemonNext = ( offNum + limitNum)
+			const firstlist = (offNum + 1)
+			const pokemonPre = (offNum - limitNum)
+			Team.findById(teamId)
+			.then(team =>{
+				res.render('team/addpkmn', { pokemonData, teamId, team, offNum, firstlist,  pokemonNext, pokemonPre,   ...req.session })
+			}
+			)
+			.catch(err =>{
+			res.redirect(`/error?error=${err}`)
+			})
+		})
+
+		//POST - update team with new pokemon
+router.get('/:teamid/addPokemon/:pkmnname', async (req, res)=> {
+	const pokemonName = req.params.pkmnname
+	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
+	const pokemonData = pokemonInfo.data
+	const teamId = req.params.teamid
+	req.body.owner = req.session.userId
+	req.body.name = pokemonName
+	req.body.type1 = pokemonData.types[0].type.name
+	req.body.type2 = " "
+	req.body.type2 = pokemonData.types[1].type.name
+	req.body.sprite = pokemonData.sprites.front_default
+	const newPokemon = req.body
+	Pokemon.create(newPokemon) 
+	.then(pokemon =>{
+		Team.findById(teamId)
+		.populate('pokemons')
+		.populate('pokemons.name')
+		.then(team =>{
+			team.pokemons.push(pokemon) 
+			return team.save()
+		})
+		.then( team=>{
+		res.redirect(`/team/${team.id}`) 
+		})
+	}
+	)
+	.catch(err =>{
+		res.redirect(`/error?error=${err}`)
+		})
+})
+
 // create -> POST route that actually calls the db and makes a new document
 router.post('/', (req, res) => {
-	req.body.ready = req.body.ready === 'on' ? true : false
-
 	req.body.owner = req.session.userId
 	Team.create(req.body)
 		.then(team => {
@@ -100,6 +157,8 @@ router.put('/:id', (req, res) => {
 router.get('/:id', (req, res) => {
 	const teamId = req.params.id
 	Team.findById(teamId)
+		.populate('pokemons')
+
 		.then(team => {
             const {username, loggedIn, userId} = req.session
 			res.render('team/show', { team, username, loggedIn, userId })

@@ -46,7 +46,6 @@ router.get('/', (req, res) => {
 router.get('/Dex/', async (req, res) => {
 	const offset = req.query.offset
 	const limit = req.query.limit
-	console.log(offset)
 		// const pokemonURL = `${process.env.POKEAPI_URL}/pokemon`
 			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/?offset=${offset}&limit=${limit}`)
 			const pokemonData = pokemonInfo.data.results
@@ -199,7 +198,7 @@ router.delete('/:id', (req, res) => {
 	const pokemonId = req.params.id
 	Pokemon.findByIdAndRemove(pokemonId)
 		.then(pokemon => {
-			res.redirect('/pokemon')
+			res.redirect('/profile')
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)

@@ -11,15 +11,15 @@
         <h3 class="ms-3">Your Favorite Pokemons</h3> 
       {% for pokemon in pokemons %}
         <div class="card ms-3" style="width: 18rem;">
-          <h4 class="card-header">{{ pokemon.name }}</h4>
+          <h4 class="card-header" style="text-transform: capitalize;">{{ pokemon.name }}</h4>
           <div class="card-body">
             <p class="card-text">
               Type: {{ pokemon.type1 }} {{ pokemon.type2 }}
             </p>
             <a href="/pokemon/{{ pokemon.id }}" class="btn btn-info">
-              View {{ pokemon.name }}
+              Info
             </a>
-            <a href="/pokemon/{{ pokemon.id }}/edit" class="btn btn-info">
+            <a href="/pokemon/{{ pokemon.id }}/edit" class="btn btn-success">
               Edit
             </a>
           </div>
