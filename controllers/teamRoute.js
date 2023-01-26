@@ -90,8 +90,11 @@ router.get('/:teamid/addPokemon/:pkmnname', async (req, res)=> {
 	req.body.owner = req.session.userId
 	req.body.name = pokemonName
 	req.body.type1 = pokemonData.types[0].type.name
-	req.body.type2 = " "
-	req.body.type2 = pokemonData.types[1].type.name
+	if (pokemonData.types.length == 1){
+		req.body.type2 = " "
+	} else {
+		req.body.type2 = pokemonData.types[1].type.name
+	}
 	req.body.sprite = pokemonData.sprites.front_default
 	const newPokemon = req.body
 	Pokemon.create(newPokemon) 
@@ -158,6 +161,7 @@ router.get('/:id', (req, res) => {
 	const teamId = req.params.id
 	Team.findById(teamId)
 		.populate('pokemons')
+		.populate('owner.username')
 
 		.then(team => {
             const {username, loggedIn, userId} = req.session

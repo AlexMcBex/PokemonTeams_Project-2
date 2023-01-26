@@ -5,7 +5,9 @@
         <h2>Team {{ team.name }} </h2>
         <h5>{{ team.description }}</h5>
             {% for pokemon in team.pokemons %}
-            <div class="card"><h2 style="text-transform: capitalize; display:inline" ><img src="{{ pokemon.sprite }}" alt="">{{ pokemon.name }}</h2> <h5 style="display:inline; text-transform: capitalize;"> {{ pokemon.type1 }} {{ pokemon.type2 }}</h5></div>
+            <div class="card {{ pokemon.type1 }}" style="width:300px; border: 6px solid gray">
+                <h2  class="ms-3 mb-1" style="text-transform: capitalize; display:inline" ><img src="{{ pokemon.sprite }}" alt="">{{ pokemon.name }}</h2> 
+            <h5 class=ms-3  style="display:inline; text-transform: capitalize;"> {{ pokemon.type1 }} {{ pokemon.type2 }}</h5></div>
             {% endfor %}
             {% if team.owner == userId %}
             <h3><a href="/team/{{ team.id }}/addPokemon/?offset=0&limit=27" class="btn btn-primary">add Pokemons to team</a> 
@@ -17,5 +19,6 @@
         </div>
     </article>
     <small>Team id: {{ team.id }} </small>
+    <small>owned by: {{ team.owner }}</small>
 </div>
 {% endblock %}

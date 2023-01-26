@@ -7,3 +7,25 @@ body {
     font-family: "Play";
 }
 
+.normal{ background-color: rgb(186, 178, 178);}
+.flying{ background-color: rgb(145, 180, 206);}
+.fire{ background-color: rgb(238, 119, 50);}
+.water{ background-color: rgb(107, 140, 223);}
+.psychic{ background-color: rgb(237, 101, 240);}
+.bug{ background-color: rgb(169, 217, 111);}
+.grass{ background-color: rgb(55, 188, 66);}
+.rock{ background-color: rgb(153, 142, 70);}
+.electric{ background-color: rgb(246, 254, 20);}
+.ghost{ background-color: rgb(157, 71, 227);}
+.ice{ background-color: rgb(64, 214, 240);}
+.dark{ background-color: rgb(62, 62, 62);}
+.fighting{ background-color: rgb(212, 72, 72);}
+.dragon{ background-color: rgb(59, 104, 251);}
+.poison{ background-color: rgb(118, 48, 198);}
+.steel{ background-color: rgb(166, 166, 166);} 
+.ground{ background-color: rgb(101, 70, 46);}
+.fairy{ background-color: rgb(255, 190, 252);}
+
+
+
+
