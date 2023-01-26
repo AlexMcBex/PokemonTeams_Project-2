@@ -6,7 +6,6 @@
              {{ pokemonData.name}}
             </h1> 
         <img src="{{ pokemonData.sprites.other.official-artwork.front_default }}" alt="artwork">
-        <h4>LVL: {{ pokemon.level }}</h4>
         <h3>Type: {{ pokemonData.types.0.type.name }}  {{ pokemonData.types.1.type.name }}</h3>
         {% if pokemon.owner == userId %}
         <div class="btn-group">
@@ -19,7 +18,7 @@
         {% endif %}
     </article>
     
-    <small>Created by: {{ pokemon.owner }}</small><br>
+    <small>Owned by: {{ pokemon.owner }}</small><br>
     <small>PKMN id: {{ pokemon.id }}</small>
 </div>
 {% endblock %}

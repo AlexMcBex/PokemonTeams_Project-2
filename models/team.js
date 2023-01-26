@@ -10,6 +10,7 @@ const { Schema, model } = mongoose
 const teamSchema = new Schema(
 	{
 		name: { type: String, required: true },
+		description: {type: String},
 		sprite: { type: String },
 		pokemons: [ {
 			type: Schema.Types.ObjectID,

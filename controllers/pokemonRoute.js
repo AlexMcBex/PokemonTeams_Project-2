@@ -50,14 +50,16 @@ router.get('/Dex/', async (req, res) => {
 		// const pokemonURL = `${process.env.POKEAPI_URL}/pokemon`
 			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/?offset=${offset}&limit=${limit}`)
 			const pokemonData = pokemonInfo.data.results
+			const limitNum = Number(limit)
 			const offNum = Number(offset)
-			const pokemonNext = ( offNum + 35)
-			const pokemonPre = (offNum - 35)
+			const pokemonNext = ( offNum + limitNum)
+			const firstlist = (offNum + 1)
+			const pokemonPre = (offNum - limitNum)
 			// const pokemonShow = await axios(`${pokemonData[0].url}`)
 			// pokemonData.forEach(pkmn => console.log(pkmn.url))
 			// const pokemonShow =(`${pokemonData[252].url}`)
 			// console.log(pokemonShow) 
-			res.render('pokemon/Dex', { pokemonData, offNum,  pokemonNext, pokemonPre,  ...req.session })
+			res.render('pokemon/Dex', { pokemonData, offNum, firstlist,  pokemonNext, pokemonPre,  ...req.session })
 		})
 
 		//POKEDEX SHOW route
@@ -69,7 +71,7 @@ router.get('/Dex/:name', async (req, res) => {
 			pokemonNext = pokemonData.id + 1
 			// console.log(pokemonData)
             const {username, loggedIn, userId} = req.session
-			res.render('pokemon/DexShow', { username, pokemonData, pokemonPre, pokemonNext, loggedIn, userId })
+			res.render('pokemon/DexShow', { username, pokemonData, pokemonPre, pokemonNext, loggedIn, userId }) 
 		})
 				//POKEDEX SHOW route
 router.get('/Dex/:id', async (req, res) => {

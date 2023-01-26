@@ -12,7 +12,9 @@ const pokemonSchema = new Schema(
 		name: { type: String, required: true },
 		type1: { type: String, required: true },
 		type2: { type: String },
+		dexId: {type: Number},
 		sprite: {type: String },
+		artwork: {type:String},
 		owner: {
 			type: Schema.Types.ObjectID,
 			ref: 'User',
