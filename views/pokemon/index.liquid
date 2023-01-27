@@ -11,9 +11,15 @@
             <p class="card-text" style="text-transform: capitalize;">
               Type: {{ pokemon.type1 }} {{ pokemon.type2 }}
             </p>
-            <a href="/pokemon/{{ pokemon.id }}" class="btn btn-info " style="text-transform: capitalize;">
-              View {{ pokemon.name }}
+            
+            <form action="/pokemon/{{ pokemon.id }}?_method=DELETE" method="POST" style="display: inline;">
+            <a href="/pokemon/{{ pokemon.id }}" class="btn btn-primary " style="text-transform: capitalize; width: 100px; ">
+            Info
             </a>
+            {% if team.owner == userId %}
+            <input type="submit" value="X" class="btn btn-danger"style="display: inline;">
+            {% endif %}
+            </form>
           </div>
         </div>
       {% endfor %}

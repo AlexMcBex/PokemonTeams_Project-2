@@ -75,6 +75,7 @@ router.get('/Dex/:name', async (req, res) => {
             const {username, loggedIn, userId} = req.session
 			res.render('pokemon/DexShow', { username, pokemonData, pokemonPre, pokemonNext, loggedIn, userId }) 
 		})
+
 				//POKEDEX SHOW route
 router.get('/Dex/:id', async (req, res) => {
 	const pokemonId = req.params.name.toLowerCase()

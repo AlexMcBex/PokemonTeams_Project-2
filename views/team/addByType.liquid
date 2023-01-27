@@ -3,15 +3,9 @@
 <div class="container-md">
   
   <h2 class="mt-1" style="display: inline;">Choose the Pokemon to add to the Team "{{ team.name }}" <br>
-  <h3>Type: <span class="{{ typeName }}" style="border-radius: 5px; text-transform: capitalize; padding: 3px">{{ typeName }}</span></h3><i>{{ firstlist }} - {{ pokemonNext }}</i></h2> 
-  {% if offNum > 0 %} 
-    <a href="/team/{{ team.id }}/addPokemon/{{ typeName }}?offset={{ pokemonPre }}&limit=27" class="btn btn-warning ms-3" style="width: 200px; ">Previous Page</a>
-    {% else %}
-    <div class="btn ms-3" style="width: 200px; background: rgb(180, 168, 103)">Previous Page</div>
-    {% endif %}
-    <a href="/team/{{ team.id }}/addPokemon/{{ typeName }}?offset={{ pokemonNext }}&limit=27" class="btn btn-warning ms-3" style="width: 200px; ">Next Page</a>
+  <h3>Type: <span class="{{ typeName }}" style="border-radius: 5px; text-transform: capitalize; padding: 3px">{{ typeName }}</span></h3>
   <div class="row mt-3">
-
+<hr>
     {% for pkmn in pokemonData %}
 
       <div class="card ps-0 ms-3 mb-3" style="width: 12rem; border-radius: 200px; padding-left: -1px; height: 12rem; text-align: center;">

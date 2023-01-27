@@ -4,6 +4,13 @@
     <article>
         <h2>Team {{ team.name }} </h2>
         <h5>{{ team.description }}</h5>
+        <small class="mb-0 mt-0">Created by: 
+        {% if team.owner == userId %}
+        You ☆
+        {% else  %}
+        {{ team.owner.username }}
+       {% endif %}
+        </small>
         <hr style="height: 1px">
     
         <div class="row">
@@ -45,13 +52,7 @@
             </form>
         </div>
     </article>
-    <small>Owned by: 
-        {% if team.owner == userId %}
-        You ☆
-        {% else  %}
-        {{ team.owner.username }}
-       {% endif %}
-        </small><br>
+    <br>
     <small>Team id: {{ team.id }} </small>
 </div>
 {% endblock %}

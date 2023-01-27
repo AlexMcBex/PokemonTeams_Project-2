@@ -26,6 +26,10 @@ router.use((req, res, next) => {
 // index ALL
 router.get('/', (req, res) => {
 	Team.find({})
+	
+			
+	.populate('pokemons')
+	.populate('pokemons.name')
 		.then(teams => {
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
@@ -138,6 +142,7 @@ router.get('/:teamid/addPokemon/:pkmnname', async (req, res)=> {
 		req.body.type2 = pokemonData.types[1].type.name
 	}
 	req.body.sprite = pokemonData.sprites.front_default
+	req.body.team = teamId
 	const newPokemon = req.body
 	Pokemon.create(newPokemon) 
 	.then(pokemon =>{

@@ -15,6 +15,7 @@ const pokemonSchema = new Schema(
 		dexId: {type: Number},
 		sprite: {type: String },
 		artwork: {type:String},
+		team: {type:String},
 		owner: {
 			type: Schema.Types.ObjectID,
 			ref: 'User',

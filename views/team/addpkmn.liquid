@@ -13,6 +13,7 @@
   <div class="row mt-3">
     {% for pkmn in pokemonData %}
       <div class="card ps-0 ms-3 mb-3" style="width: 16rem; border-radius: 200px; padding-left: -1px; height: 16rem; text-align: center;">
+        
         <a style="text-transform: capitalize; text-decoration: none;" href="/team/{{ team.id }}/addPokemon/{{ pkmn.name }}" class="">
         <h4 class="pt-3 mt-0 mb-0 ms-0"style="text-transform: capitalize; border-radius: 200px 200px 0 0; background-color: red; color: white; height: 8rem; width: 16rem; border-bottom: 25px solid black">{{ forloop.index | plus: offNum }} <br>{{ pkmn.name }} </h4>
         <div class="card-body">
