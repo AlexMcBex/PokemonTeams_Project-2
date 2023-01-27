@@ -1,19 +1,19 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-  <div>
-    <img class="ms-3 mt-3 " src="https://i.pinimg.com/originals/bd/cd/20/bdcd20f5411ee5785889542d303ad4cb.png" alt="logo" style="width: 300px;">
+  <div class="container-md">
+    <img class="ms-3 mt-3 " src="https://i.pinimg.com/originals/bd/cd/20/bdcd20f5411ee5785889542d303ad4cb.png" alt="logo" style="width: 300px;"> <br>
     <h2 class="mt-1" style="display: inline;"><i>{{ firstlist }} - {{ pokemonNext }}</i></h2> 
     {% if offNum > 0 %} 
       <a href="/pokemon/Dex?offset={{ pokemonPre }}&limit=27" class="btn btn-warning ms-3" style="width: 200px; ">Previous Page</a>
       {% else %}
-      <div class="btn ms-3" style="width: 200px; background: rgb(180, 168, 103)">Previous Page</div>
+      <div class="btn ms-3" style="width: 150px; background: rgb(180, 168, 103)">Previous Page</div>
       {% endif %}
-      <a href="/pokemon/Dex?offset={{ pokemonNext }}&limit=27" class="btn btn-warning ms-3" style="width: 200px; ">Next Page</a>
+      <a href="/pokemon/Dex?offset={{ pokemonNext }}&limit=27" class="btn btn-warning ms-3" style="width: 150px;  ">Next Page</a>
     <div class="row mt-3">
       {% for pkmn in pokemonData %}
         <div class="card ps-0 ms-3 mb-3" style="width: 16rem; border-radius: 200px; padding-left: -1px; height: 16rem; text-align: center;">
-          <a style="text-transform: capitalize; text-decoration: none;" href="/pokemon/Dex/{{ pkmn.name }}" class="">
-          <h4 class="pt-5 mt-0 mb-0 ms-0"style="text-transform: capitalize; border-radius: 200px 200px 0 0; background-color: red; color: white; height: 8rem; width: 16rem; border-bottom: 25px solid black">{{ forloop.index | plus: offNum }} <br>{{ pkmn.name }} </h4>
+          <a style="text-transform: capitalize; text-decoration: none; border-radius: 200px 200px 200px 200px;" href="/pokemon/Dex/{{ pkmn.name }}" class="">
+          <h4 class="pt-3 mt-0 mb-0 ms-0"style="text-transform: capitalize; border-radius: 200px 200px 0 0; background-color: red; color: white; height: 8rem; width: 16rem; border-bottom: 25px solid black">{{ forloop.index | plus: offNum }} <br>{{ pkmn.name }} </h4>
           <div class="card-body">
                <img class="mt-0 mb-0"src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ forloop.index | plus: offNum }}.png" alt="N/A">
             

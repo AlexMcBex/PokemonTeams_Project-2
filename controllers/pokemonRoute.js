@@ -1,6 +1,7 @@
 // Import Dependencies
 const express = require('express')
 const Pokemon = require('../models/pokemon')
+const Team = require('../models/team')
 const axios = require('axios')
 require('dotenv').config()
 

@@ -4,22 +4,37 @@
     <article>
         <h2>Team {{ team.name }} </h2>
         <h5>{{ team.description }}</h5>
-        {% for pokemon in pokemons %}
-            <div class="card ms-3 mb-3 {{ pokemon.type1 }}" style="width: 14rem; border: 5px solid white">
-              <h4 class="card-header"style="text-transform: capitalize; text-align: center"><img src="{{ pokemon.sprite }}" alt="NA" style="border: 2px solid black; background-color: white; border-radius: 10px; margin-right: 3px"><br>{{ pokemon.name }} </h3>
-              <div class="card-body">
-                <p class="card-text" style="text-transform: capitalize;">
-                  Type: {{ pokemon.type1 }} {{ pokemon.type2 }}
-                </p>
-                <a href="/pokemon/{{ pokemon.id }}" class="btn btn-info " style="text-transform: capitalize;">
-                  View {{ pokemon.name }}
-                </a>
-              </div>
+        <div class="row">
+                  {% for pokemon in team.pokemons %}
+        <div class="card ms-3 mb-3 {{ pokemon.type1 }}" style="width: 14rem; border: 5px solid white">
+          <h4 class="card-header"style="text-transform: capitalize; text-align: center"><img src="{{ pokemon.sprite }}" alt="NA" style="border: 2px solid black; background-color: white; border-radius: 10px; margin-right: 3px"><br>
+          {{ pokemon.name }} </h3>
+          <div class="card-body">
+            <p class="card-text" style="text-transform: capitalize;">
+              Type: {{ pokemon.type1 }} {{ pokemon.type2 }}
+            </p>
+            <div class="row">
+            <a href="/pokemon/{{ pokemon.id }}" class="btn btn-primary " style="text-transform: capitalize; width: 100px; display: inline;">
+             Info
+            </a>
+            <form action="/pokemon/{{ pokemon.id }}?_method=DELETE" method="POST" style="display: inline;">
+                <input type="submit" value="X" class="btn btn-danger"style="display: inline;">
+            </form>
             </div>
-          {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+      </div>
             {% if team.owner == userId %}
-            <h3><a href="/team/{{ team.id }}/addPokemon/?offset=0&limit=27" class="btn btn-primary">add Pokemons to team</a> 
-            <a href="/team/{{ team.id }}/edit" class="btn btn-primary">Edit {{ team.name }}</a> 
+            <h3>
+
+            {% if team.pokemons.length < 6 %}
+            <a href="/team/{{ team.id }}/addPokemon/?offset=0&limit=27" class="btn btn-primary">add Pokemons to team</a> 
+            {% else %}
+            <div class="btn btn-warning">No more space in the team</div>
+            {% endif %}
+
+            <a href="/team/{{ team.id }}/edit" class="btn btn-primary">Edit {{ team.name }} Infos</a> 
             <form action="/team/{{ team.id }}?_method=DELETE" method="POST">
                 <input type="submit" value="Delete Team '{{team.name}}'" class="btn btn-danger mt-2"></h3>
                 {% endif  %}
