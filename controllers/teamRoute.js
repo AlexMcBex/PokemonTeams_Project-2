@@ -81,6 +81,31 @@ router.get('/:id/addPokemon/', async (req, res) => {
 			})
 		})
 
+		// GET - add pokemon to the team
+router.get('/:teamId/addPokemon/type/:typeName/', async (req, res) => {		
+	const typeName = req.params.typeName
+	const offset = req.query.offset
+	const limit = req.query.limit
+	const teamId = req.params.teamId
+	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/type/${typeName}?offset=${offset}&limit=${limit}`)
+	const pokemonData = pokemonInfo.data.pokemon
+	const limitNum = Number(limit)
+	const offNum = Number(offset)
+	const pokemonNext = ( offNum + limitNum)
+	const firstlist = (offNum + 1)
+	const pokemonPre = (offNum - limitNum)
+	Team.findById(teamId)
+	.then(team =>{
+		res.render('team/addByType', { pokemonData, teamId, team, offNum, firstlist,  pokemonNext, typeName, pokemonPre,   ...req.session })
+	}
+	)
+	.catch(err =>{
+	res.redirect(`/error?error=${err}`)
+	})
+})
+
+
+
 		//POST - update team with new pokemon
 router.get('/:teamid/addPokemon/:pkmnname', async (req, res)=> {
 	const pokemonName = req.params.pkmnname

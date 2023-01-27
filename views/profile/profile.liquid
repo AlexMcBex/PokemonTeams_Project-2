@@ -28,10 +28,11 @@
 -->
       <h3 class="ms-3">Your Teams</h3>
       {% for team in teams %}
-        <div class="card ms-3" style="width: 14rem;">
+        <div class="card ms-3" style="width: 16rem;">
           <h4 class="card-header">Team "{{ team.name }}"</h4>
           <div class="card-body">
           <h6>{{ team.description }}</h6>
+          <div class="grid">
           {% for pokemon in team.pokemons %}
             <img src="{{ pokemon.sprite }}" alt="">
             {% endfor %}
@@ -41,6 +42,7 @@
           </div>
         </div>
       {% endfor %}
+      
     </div>
   </div>
 {% endblock %}

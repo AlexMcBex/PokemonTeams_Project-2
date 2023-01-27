@@ -198,12 +198,46 @@ router.get('/:id', async (req, res) => {
 		})
 })
 
+// show route
+router.get('/:teamId/:id', async (req, res) => {
+	const teamId = req.params.teamId
+	const pokemonId = req.params.id
+	Pokemon.findById(pokemonId)
+	.populate('owner')
+	.populate('owner.username', '-password')
+		.then(async pokemon => {
+			const pokemonName = pokemon.name.toLowerCase()
+			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
+			const pokemonData = pokemonInfo.data
+			// console.log(pokemonData)
+            const {username, loggedIn, userId} = req.session
+			res.render('pokemon/show', { pokemon, username, pokemonData, loggedIn, userId, teamId})
+		})
+		.catch((error) => {
+			res.redirect(`/error?error=${error}`)
+			console.log(error)
+		})
+})
+
 // delete route
 router.delete('/:id', (req, res) => {
 	const pokemonId = req.params.id
 	Pokemon.findByIdAndRemove(pokemonId)
 		.then(pokemon => {
 			res.redirect('/pokemon/mine')
+		})
+		.catch(error => {
+			res.redirect(`/error?error=${error}`)
+		})
+})
+
+// delete in team route
+router.delete('/:team/:id', (req, res) => {
+	const teamId = req.params.team
+	const pokemonId = req.params.id
+	Pokemon.findByIdAndRemove(pokemonId)
+		.then(pokemon => {
+			res.redirect(`/team/${teamId}`)
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)

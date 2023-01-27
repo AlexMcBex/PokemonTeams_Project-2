@@ -1,9 +1,11 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-<div class="container-md">
+<div class="container-sm">
     <article>
         <h2>Team {{ team.name }} </h2>
         <h5>{{ team.description }}</h5>
+        <hr style="height: 1px">
+    
         <div class="row">
                   {% for pokemon in team.pokemons %}
         <div class="card ms-3 mb-3 {{ pokemon.type1 }}" style="width: 14rem; border: 5px solid white">
@@ -14,12 +16,14 @@
               Type: {{ pokemon.type1 }} {{ pokemon.type2 }}
             </p>
             <div class="row">
-            <a href="/pokemon/{{ pokemon.id }}" class="btn btn-primary " style="text-transform: capitalize; width: 100px; display: inline;">
-             Info
-            </a>
-            <form action="/pokemon/{{ pokemon.id }}?_method=DELETE" method="POST" style="display: inline;">
+                <form action="/pokemon/{{ team.id}}/{{ pokemon.id }}?_method=DELETE" method="POST" style="display: inline;">
+                <a href="/pokemon/{{ team.id }}/{{ pokemon.id }}" class="btn btn-primary " style="text-transform: capitalize; width: 100px; ">
+                Info
+                </a>
+                {% if team.owner == userId %}
                 <input type="submit" value="X" class="btn btn-danger"style="display: inline;">
-            </form>
+                {% endif %}
+                </form>
             </div>
           </div>
         </div>
@@ -41,7 +45,13 @@
             </form>
         </div>
     </article>
-    <small>Team id: {{ team.id }} </small><br>
-    <small>owned by: {{ team.owner.username }}</small>
+    <small>Owned by: 
+        {% if team.owner == userId %}
+        You ☆
+        {% else  %}
+        {{ team.owner.username }}
+       {% endif %}
+        </small><br>
+    <small>Team id: {{ team.id }} </small>
 </div>
 {% endblock %}

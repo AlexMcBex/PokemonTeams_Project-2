@@ -7,7 +7,7 @@ body {
     font-family: "Play";
 }
 
-.normal{ background-color: rgb(186, 178, 178);}
+.normal{ background-color: rgb(228, 228, 228);}
 .flying{ background-color: rgb(145, 180, 206);}
 .fire{ background-color: rgb(238, 119, 50);}
 .water{ background-color: rgb(107, 140, 223);}
@@ -22,7 +22,7 @@ body {
 .fighting{ background-color: rgb(212, 72, 72);}
 .dragon{ background-color: rgb(59, 104, 251);}
 .poison{ background-color: rgb(118, 48, 198);}
-.steel{ background-color: rgb(166, 166, 166);} 
+.steel{ background-color: rgb(133, 133, 133);} 
 .ground{ background-color: rgb(101, 70, 46);}
 .fairy{ background-color: rgb(255, 190, 252);}
 
