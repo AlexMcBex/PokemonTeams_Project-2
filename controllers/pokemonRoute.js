@@ -43,7 +43,7 @@ router.get('/', (req, res) => {
 })
 
 // POKEDEX ALL -> pokeapi all pokemons
-router.get('/Dex/', async (req, res) => {
+router.get('/Dex/', async (req, res, pkmn) => {
 	const offset = req.query.offset
 	const limit = req.query.limit
 		// const pokemonURL = `${process.env.POKEAPI_URL}/pokemon`
@@ -54,11 +54,13 @@ router.get('/Dex/', async (req, res) => {
 			const pokemonNext = ( offNum + limitNum)
 			const firstlist = (offNum + 1)
 			const pokemonPre = (offNum - limitNum)
+			// let index = pokemonData.indexOf(pkmn)
+			// console.log(pokemonData)
 			// const pokemonShow = await axios(`${pokemonData[0].url}`)
 			// pokemonData.forEach(pkmn => console.log(pkmn.url))
 			// const pokemonShow =(`${pokemonData[252].url}`)
 			// console.log(pokemonShow) 
-			res.render('pokemon/Dex', { pokemonData, offNum, firstlist,  pokemonNext, pokemonPre,  ...req.session })
+			res.render('pokemon/Dex', { pokemonData, offNum, offNum, firstlist,  pokemonNext, pokemonPre,  ...req.session })
 		})
 
 		//POKEDEX SHOW route
@@ -179,6 +181,8 @@ router.put('/:id', (req, res) => {
 router.get('/:id', async (req, res) => {
 	const pokemonId = req.params.id
 	Pokemon.findById(pokemonId)
+	.populate('owner')
+	.populate('owner.username', '-password')
 		.then(async pokemon => {
 			const pokemonName = pokemon.name.toLowerCase()
 			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
@@ -198,7 +202,7 @@ router.delete('/:id', (req, res) => {
 	const pokemonId = req.params.id
 	Pokemon.findByIdAndRemove(pokemonId)
 		.then(pokemon => {
-			res.redirect('/profile')
+			res.redirect('/pokemon/mine')
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)

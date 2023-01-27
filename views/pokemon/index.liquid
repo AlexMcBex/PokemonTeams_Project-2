@@ -1,20 +1,17 @@
 {% layout 'layout.liquid' %}
 {% block content %}
   <div>
-    <h2 class="display-6">All Pokemon</h2>
+    <h2 class="display-6 ms-3 mb-3 mt-3">  List of Pokemons</h2>
     <div class="row">
-      <h3><a href="/pokemon/new" class="btn btn-primary ms-3">New Pokemon</a> <a href="/pokemon/search" class="btn btn-primary ms-3">Search</a></h3>
+      <!-- <h3><a href="/pokemon/new" class="btn btn-primary ms-3">New Pokemon</a> <a href="/pokemon/search" class="btn btn-primary ms-3">Search</a></h3> -->
       {% for pokemon in pokemons %}
-        <div class="card ms-3" style="width: 18rem;">
-          <h4 class="card-header"style="text-transform: capitalize;">{{ pokemon.name }} </h4>
+        <div class="card ms-3 mb-3 {{ pokemon.type1 }}" style="width: 14rem; border: 5px solid white">
+          <h4 class="card-header"style="text-transform: capitalize; text-align: center"><img src="{{ pokemon.sprite }}" alt="NA" style="border: 2px solid black; background-color: white; border-radius: 10px; margin-right: 3px"><br>{{ pokemon.name }} </h3>
           <div class="card-body">
-            <h5 class="card-title">
-              LVL: {{ pokemon.level }}
-            </h5>
-            <p class="card-text">
+            <p class="card-text" style="text-transform: capitalize;">
               Type: {{ pokemon.type1 }} {{ pokemon.type2 }}
             </p>
-            <a href="/pokemon/{{ pokemon.id }}" class="btn btn-info">
+            <a href="/pokemon/{{ pokemon.id }}" class="btn btn-info " style="text-transform: capitalize;">
               View {{ pokemon.name }}
             </a>
           </div>

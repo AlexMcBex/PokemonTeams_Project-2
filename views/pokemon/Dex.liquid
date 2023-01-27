@@ -11,15 +11,14 @@
       <a href="/pokemon/Dex?offset={{ pokemonNext }}&limit=27" class="btn btn-warning ms-3" style="width: 200px; ">Next Page</a>
     <div class="row mt-3">
       {% for pkmn in pokemonData %}
-        <div class="card ps-0 ms-3 mb-3" style="width: 12rem; border-radius: 200px; height: 12rem; text-align: center;">
-          <h4 class="card-title pt-5 "style="text-transform: capitalize; border-radius: 200px 200px 0 0; background-color: red; color: white; height: 6rem; width: 12rem">{{ pkmn.name }} </h4>
+        <div class="card ps-0 ms-3 mb-3" style="width: 16rem; border-radius: 200px; padding-left: -1px; height: 16rem; text-align: center;">
+          <a style="text-transform: capitalize; text-decoration: none;" href="/pokemon/Dex/{{ pkmn.name }}" class="">
+          <h4 class="pt-5 mt-0 mb-0 ms-0"style="text-transform: capitalize; border-radius: 200px 200px 0 0; background-color: red; color: white; height: 8rem; width: 16rem; border-bottom: 25px solid black">{{ forloop.index | plus: offNum }} <br>{{ pkmn.name }} </h4>
           <div class="card-body">
-            <p class="card-text">
-            </p>
-            <a style="text-transform: capitalize;" href="/pokemon/Dex/{{ pkmn.name }}" class="btn btn-info mb-2">
-              Info
-            </a>
-          </div>
+               <img class="mt-0 mb-0"src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ forloop.index | plus: offNum }}.png" alt="N/A">
+            
+               </div>
+               </a>
         </div>
       {% endfor %}
       <br>

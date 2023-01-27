@@ -161,7 +161,8 @@ router.get('/:id', (req, res) => {
 	const teamId = req.params.id
 	Team.findById(teamId)
 		.populate('pokemons')
-		.populate('owner.username')
+		.populate('owner')
+		.populate('owner.username', '-password')
 
 		.then(team => {
             const {username, loggedIn, userId} = req.session

@@ -34,9 +34,12 @@ router.get('/', (req, res) => {
 		.then(pokemons => {
 			userPokes = pokemons
 			Team.find({ owner: userId })
+			
+		.populate('pokemons')
+		.populate('pokemons.name')
 				.then( teams => {
 					res.render('profile/profile', { pokemons: userPokes, teams, username, loggedIn })
-					console.log(teams)
+					// console.log(teams)
 				})
 				.catch(err => {
 					res.redirect(`/error?error=${error}`)
