@@ -81,6 +81,23 @@ router.get('/:id/addPokemon/', async (req, res) => {
 			})
 		})
 
+
+		// GET - add pokemon to the team
+		router.get('/:teamId/addPokemon/type/', async (req, res) => {		
+			const teamId = req.params.teamId
+			const typeInfo = await axios(`${process.env.POKEAPI_URL}/type/`)
+			const typeData = typeInfo.data.results
+			Team.findById(teamId)
+			.then(team =>{
+				res.render('team/typeSelect', { typeData, teamId, team, ...req.session })
+			}
+			)
+			.catch(err =>{
+			res.redirect(`/error?error=${err}`)
+			})
+		})
+		
+
 		// GET - add pokemon to the team
 router.get('/:teamId/addPokemon/type/:typeName/', async (req, res) => {		
 	const typeName = req.params.typeName
