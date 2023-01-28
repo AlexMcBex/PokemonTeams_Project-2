@@ -23,9 +23,9 @@ The User should also be able to make lists of his favorite pokemons and select h
 - [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
 
 ## Objectives
-- [ ] Made the app functional with all the routes correctly working
-- [ ] Allowed users to sign up, login and logout of the site
-- [ ] Incorporated [PokeAPI](https://pokeapi.co)
+- [x] Made the app functional with all the routes correctly working
+- [x] Allowed users to sign up, login and logout of the site
+- [x] Incorporated [PokeAPI](https://pokeapi.co)
 - [ ] Users can export their trainers cards out of the app
 - [ ] Deploy the app online
 

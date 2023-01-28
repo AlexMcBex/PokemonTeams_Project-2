@@ -3,28 +3,91 @@
     src: url("../font/Play-Regular.ttf");
 }
 body {
-    background-color: rgb(195, 183, 183);
+    background-color: rgb(206, 202, 202);
     font-family: "Play";
 }
 
-.normal{ background-color: rgb(228, 228, 228);}
-.flying{ background-color: rgb(145, 180, 206);}
-.fire{ background-color: rgb(238, 119, 50);}
-.water{ background-color: rgb(107, 140, 223);}
-.psychic{ background-color: rgb(237, 101, 240);}
-.bug{ background-color: rgb(169, 217, 111);}
-.grass{ background-color: rgb(55, 188, 66);}
-.rock{ background-color: rgb(153, 142, 70);}
-.electric{ background-color: rgb(246, 254, 20);}
-.ghost{ background-color: rgb(157, 71, 227);}
-.ice{ background-color: rgb(64, 214, 240);}
-.dark{ background-color: rgb(101, 108, 98);}
-.fighting{ background-color: rgb(212, 72, 72);}
-.dragon{ background-color: rgb(59, 104, 251);}
-.poison{ background-color: rgb(118, 48, 198);}
-.steel{ background-color: rgb(133, 133, 133);} 
-.ground{ background-color: rgb(101, 70, 46);}
-.fairy{ background-color: rgb(255, 190, 252);}
+.normal{ 
+    background-color: rgb(228, 228, 228);
+    border: 2px solid rgb(134, 132, 132);
+}
+.flying{
+    background-color: rgb(145, 180, 206);
+    border: 2px solid rgb(17, 106, 129);
+}
+.fire{ 
+    background-color: rgb(238, 119, 50);
+    border: 2px solid rgb(176, 66, 7);
+}
+.water{ 
+    background-color: rgb(107, 140, 223);
+    border: 2px solid rgb(69, 58, 228);
+}
+.psychic{ 
+    background-color: rgb(237, 101, 240);
+    border: 2px solid rgb(222, 1, 215);
+}
+.bug{ 
+    background-color: rgb(169, 217, 111);
+    border: 2px solid rgb(118, 153, 76);
+}
+.grass{ 
+    background-color: rgb(55, 188, 66);
+    border: 2px solid rgb(0, 80, 15);
+}
+.rock{ 
+    background-color: rgb(153, 142, 70);
+    border: 2px solid rgb(78, 72, 33);
+}
+.electric{ 
+    background-color: rgb(246, 254, 20);
+    border: 2px solid rgb(180, 169, 18);
+}
+.ghost{ 
+    background-color: rgb(190, 151, 231);
+    border: 2px solid rgb(121, 82, 141);
+}
+.ice{ 
+    background-color: rgb(64, 214, 240);
+    border: 2px solid white;
+}
+.dark{ 
+    background-color: rgb(75, 75, 75);
+    border: 2px solid rgb(0, 0, 0);
+    color: white;
+}
+.fighting{ 
+    background-color: rgb(212, 72, 72);
+    border: 2px solid rgb(121, 14, 14);
+}
+.dragon{ 
+    background-color: rgb(59, 104, 251);
+    border: 2px solid rgb(71, 63, 120);
+    color: white;
+}
+.poison{ 
+    background-color: rgb(124, 87, 166);
+    border: 2px solid rgb(116, 6, 138);
+    color: white;
+}
+.steel{ 
+    background-color: rgb(185, 185, 185);
+    border: 2px solid rgb(113, 113, 113);
+} 
+.ground{ 
+    background-color: rgb(188, 110, 51);
+    border: 2px solid rgb(87, 50, 21);
+}
+.fairy{ 
+    background-color: rgb(255, 190, 252);
+    border: 2px solid white;
+}
+.unknown{
+    display: none;
+}
+.shadow{
+    display: none;
+}
 
 
 

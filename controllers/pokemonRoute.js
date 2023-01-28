@@ -46,21 +46,19 @@ router.get('/', (req, res) => {
 // POKEDEX ALL -> pokeapi all pokemons
 router.get('/Dex/', async (req, res, pkmn) => {
 	const offset = req.query.offset
-	const limit = req.query.limit
-		// const pokemonURL = `${process.env.POKEAPI_URL}/pokemon`
-			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/?offset=${offset}&limit=${limit}`)
-			const pokemonData = pokemonInfo.data.results
-			const limitNum = Number(limit)
-			const offNum = Number(offset)
-			const pokemonNext = ( offNum + limitNum)
-			const firstlist = (offNum + 1)
-			const pokemonPre = (offNum - limitNum)
-			// let index = pokemonData.indexOf(pkmn)
-			// console.log(pokemonData)
-			// const pokemonShow = await axios(`${pokemonData[0].url}`)
-			// pokemonData.forEach(pkmn => console.log(pkmn.url))
-			// const pokemonShow =(`${pokemonData[252].url}`)
-			// console.log(pokemonShow) 
+	let limit = req.query.limit
+	const limitNum = Number(limit)
+	const offNum = Number(offset)
+	const pokemonNext = ( offNum + limitNum)
+	const firstlist = (offNum + 1)
+	let pokemonPre = (offNum - limitNum)
+	if (offset == 891){
+		limit = 14
+		pokemonPre = 864
+	}
+	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/?offset=${offset}&limit=${limit}`)
+	const pokemonData = pokemonInfo.data.results
+	
 			res.render('pokemon/Dex', { pokemonData, offNum, offNum, firstlist,  pokemonNext, pokemonPre,  ...req.session })
 		})
 

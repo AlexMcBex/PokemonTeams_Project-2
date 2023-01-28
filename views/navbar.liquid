@@ -1,7 +1,7 @@
 {% block content %}
-<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: red">
+<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: red; border-bottom: 3px solid black;">
     <div class="container-fluid">
-        <a href="/" class="navbar-brand bg-light text-danger p-2">Pokemon Teams</a>
+        <a href="/" class="navbar-brand text-danger"><img src="https://fontmeme.com/temporary/1792763ee62814521ea18ce76b84a9d9.png" alt="Pokemon Teams" style="height: 30px"></a>
         {% if loggedIn %}
         <a href="/profile" class="btn btn-warning nav-link text-primary me-3" style="border: 2px solid blue ; border-radius: 2px; padding: 2px 5px 2px 5px">{{ username }} </a>
         {% endif %}

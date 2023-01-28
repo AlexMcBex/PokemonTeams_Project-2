@@ -27,6 +27,8 @@ router.use((req, res, next) => {
 router.get('/', (req, res) => {
 	Team.find({})
 	
+	.populate('owner')
+	.populate('owner.username', '-password')
 			
 	.populate('pokemons')
 	.populate('pokemons.name')
@@ -169,7 +171,7 @@ router.post('/', (req, res) => {
 	Team.create(req.body)
 		.then(team => {
 			console.log('this was returned from create', team)
-			res.redirect('/team')
+			res.redirect(`/team/${team.id}`)
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
@@ -182,7 +184,7 @@ router.get('/:id/edit', (req, res) => {
 	const teamId = req.params.id
 	Team.findById(teamId)
 		.then(team => {
-			res.render('team/edit', { team })
+			res.render('team/edit', { team, ...req.session })
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
@@ -192,8 +194,6 @@ router.get('/:id/edit', (req, res) => {
 // update route
 router.put('/:id', (req, res) => {
 	const teamId = req.params.id
-	req.body.ready = req.body.ready === 'on' ? true : false
-
 	Team.findByIdAndUpdate(teamId, req.body, { new: true })
 		.then(team => {
 			res.redirect(`/team/${team.id}`)
