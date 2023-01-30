@@ -214,7 +214,7 @@ router.get('/:id', (req, res) => {
 		.then(team => {
             const {username, loggedIn, userId} = req.session
 			res.render('team/show', { team, username, loggedIn, userId })
-			console.log(team.pokemons)
+			// console.log(team.pokemons)
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)

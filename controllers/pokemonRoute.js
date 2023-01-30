@@ -58,9 +58,8 @@ router.get('/Dex/', async (req, res, pkmn) => {
 	}
 	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/?offset=${offset}&limit=${limit}`)
 	const pokemonData = pokemonInfo.data.results
-	
-			res.render('pokemon/Dex', { pokemonData, offNum, offNum, firstlist,  pokemonNext, pokemonPre,  ...req.session })
-		})
+	res.render('pokemon/Dex', { pokemonData, offNum, offNum, firstlist,  pokemonNext, pokemonPre,  ...req.session })
+			})
 
 		//POKEDEX SHOW route
 router.get('/Dex/:name', async (req, res) => {
