@@ -45,6 +45,8 @@ router.use((req, res, next) => {
 })
 /////////////////////////////////////////////////////////////////////////////////////////
 
+
+
 // index that shows only the user's team
 router.get('/mine', (req, res) => {
     // destructure user info from req.session
@@ -109,6 +111,33 @@ router.get('/:id/addPokemon/', async (req, res) => {
 			res.redirect(`/error?error=${err}`)
 			})
 		})
+
+		// POKEDEX SEARCH -> pokeapi search by name
+router.get('/:teamId/search', async (req, res, pkmn) => {
+	
+	const teamId = req.params.teamId
+	const nameTBF = req.query.name
+	const nameLow = nameTBF.toLowerCase()
+	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/?offset=0&limit=1279`)
+	const pokemonData = pokemonInfo.data.results
+	let filtered = []
+	let indexes = []
+	for (let i = 0; i < pokemonData.length; i++){
+		if (pokemonData[i].name.includes(nameLow)){
+			filtered.push(pokemonData[i])
+			indexes.push((pokemonData.indexOf(pokemonData[i]) + 1))
+		} 
+	}
+	console.log(teamId)
+	Team.findById(teamId)
+	.then(team=>{
+		res.render('team/teamPokeSearch', { nameTBF, nameLow, indexes, teamId, filtered, pokemonData, team, ...req.session})
+})
+	.catch(err =>{
+		console.log(err)
+		res.redirect(`/error?error=${err}`)
+	})
+})
 
 
 		// GET - add pokemon to the team

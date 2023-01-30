@@ -50,6 +50,23 @@ router.get('/Dex/', async (req, res, pkmn) => {
 	res.render('pokemon/Dex', { pokemonData, offNum, offNum, firstlist, pokemonNext, pokemonPre, ...req.session })
 })
 
+// POKEDEX SEARCH -> pokeapi search by name
+router.get('/Dex/search', async (req, res, pkmn) => {
+	const nameTBF = req.query.name
+	const nameLow = nameTBF.toLowerCase()
+	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/?offset=0&limit=1279`)
+	const pokemonData = pokemonInfo.data.results
+	let filtered = []
+	let indexes = []
+	for (let i = 0; i < pokemonData.length; i++){
+		if (pokemonData[i].name.includes(nameLow)){
+			filtered.push(pokemonData[i])
+			indexes.push((pokemonData.indexOf(pokemonData[i]) + 1))
+		} 
+	}
+	console.log(nameLow)
+	res.render('pokemon/DexSearch', { nameTBF, nameLow, indexes, filtered, pokemonData, ...req.session})
+})
 
 // GET - Pokedex, pick type filter
 router.get('/Dex/type/', async (req, res) => {
