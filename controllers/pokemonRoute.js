@@ -61,19 +61,45 @@ router.get('/Dex/', async (req, res, pkmn) => {
 	res.render('pokemon/Dex', { pokemonData, offNum, offNum, firstlist,  pokemonNext, pokemonPre,  ...req.session })
 			})
 
-		//POKEDEX SHOW route
-router.get('/Dex/:name', async (req, res) => {
-			const pokemonName = req.params.name.toLowerCase()
-			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
-			const pokemonData = pokemonInfo.data
-			pokemonPre = pokemonData.id -1
-			pokemonNext = pokemonData.id + 1
-			// console.log(pokemonData)
-            const {username, loggedIn, userId} = req.session
-			res.render('pokemon/DexShow', { username, pokemonData, pokemonPre, pokemonNext, loggedIn, userId }) 
-		})
 
-				//POKEDEX SHOW route
+// GET - Pokedex, pick type filter
+router.get('/Dex/type/', async (req, res) => {		
+	const typeInfo = await axios(`${process.env.POKEAPI_URL}/type/`)
+	const typeData = typeInfo.data.results
+		res.render('pokemon/typeSelect', { typeData, ...req.session })
+	})
+		
+
+// GET -pokedex, index filtered by type
+router.get('/Dex/type/:typeName/', async (req, res) => {		
+	const typeName = req.params.typeName
+	const offset = req.query.offset
+	const limit = req.query.limit
+	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/type/${typeName}?offset=${offset}&limit=${limit}`)
+	const pokemonData = pokemonInfo.data.pokemon
+	const limitNum = Number(limit)
+	const offNum = Number(offset)
+	const pokemonNext = ( offNum + limitNum)
+	const firstlist = (offNum + 1)
+	const pokemonPre = (offNum - limitNum)
+		res.render('pokemon/typeDex', { pokemonData, offNum, firstlist,  pokemonNext, typeName, pokemonPre,   ...req.session })
+	}
+	)
+
+
+//POKEDEX SHOW route
+router.get('/Dex/:name', async (req, res) => {
+	const pokemonName = req.params.name.toLowerCase()
+	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
+	const pokemonData = pokemonInfo.data
+	pokemonPre = pokemonData.id -1
+	pokemonNext = pokemonData.id + 1
+	// console.log(pokemonData)
+	const {username, loggedIn, userId} = req.session
+	res.render('pokemon/DexShow', { username, pokemonData, pokemonPre, pokemonNext, loggedIn, userId }) 
+})
+
+//POKEDEX SHOW route
 router.get('/Dex/:id', async (req, res) => {
 	const pokemonId = req.params.name.toLowerCase()
 	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonId}`)
