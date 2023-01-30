@@ -7,19 +7,7 @@ const Pokemon = require('../models/pokemon')
 // Create router
 const router = express.Router()
 
-// Router Middleware
-// Authorization middleware
-// If you have some resources that should be accessible to everyone regardless of loggedIn status, this middleware can be moved, commented out, or deleted. 
-router.use((req, res, next) => {
-	// checking the loggedIn boolean of our session
-	if (req.session.loggedIn) {
-		// if they're logged in, go to the next thing(thats the controller)
-		next()
-	} else {
-		// if they're not logged in, send them to the login page
-		res.redirect('/auth/login')
-	}
-})
+
 
 // Routes
 
@@ -40,6 +28,39 @@ router.get('/', (req, res) => {
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
 		})
+})
+
+
+// show route
+router.get('/:id', (req, res) => {
+	const teamId = req.params.id
+	Team.findById(teamId)
+		.populate('pokemons')
+		.populate('owner')
+		.populate('owner.username', '-password')
+
+		.then(team => {
+			const {username, loggedIn, userId} = req.session
+			res.render('team/show', { team, username, loggedIn, userId })
+			// console.log(team.pokemons)
+		})
+		.catch((error) => {
+			res.redirect(`/error?error=${error}`)
+		})
+})
+
+// Router Middleware
+// Authorization middleware
+// If you have some resources that should be accessible to everyone regardless of loggedIn status, this middleware can be moved, commented out, or deleted. 
+router.use((req, res, next) => {
+	// checking the loggedIn boolean of our session
+	if (req.session.loggedIn) {
+		// if they're logged in, go to the next thing(thats the controller)
+		next()
+	} else {
+		// if they're not logged in, send them to the login page
+		res.redirect('/auth/login')
+	}
 })
 
 // index that shows only the user's team
@@ -197,24 +218,6 @@ router.put('/:id', (req, res) => {
 	Team.findByIdAndUpdate(teamId, req.body, { new: true })
 		.then(team => {
 			res.redirect(`/team/${team.id}`)
-		})
-		.catch((error) => {
-			res.redirect(`/error?error=${error}`)
-		})
-})
-
-// show route
-router.get('/:id', (req, res) => {
-	const teamId = req.params.id
-	Team.findById(teamId)
-		.populate('pokemons')
-		.populate('owner')
-		.populate('owner.username', '-password')
-
-		.then(team => {
-            const {username, loggedIn, userId} = req.session
-			res.render('team/show', { team, username, loggedIn, userId })
-			// console.log(team.pokemons)
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)

@@ -14,6 +14,12 @@
         <hr style="height: 1px">
     
         <div class="row">
+          {% if team.pokemons.length == 0 %}
+          <h4>This team doesn't have any pokemons yet...
+          <a href="/team/{{ team.id }}/addPokemon/?offset=0&limit=27" class="btn btn-primary">Go catch some!</a>
+          </h4>
+          <hr>
+          {% endif %}
                   {% for pokemon in team.pokemons %}
         <div class="card ms-3 mb-3 {{ pokemon.type1 }}" style="width: 14rem; border-width: 5px ">
           <h4 class="card-header"style="text-transform: capitalize; text-align: center"><img src="{{ pokemon.sprite }}" alt="NA" style="border: 2px solid black; background-color: white; border-radius: 10px; margin-right: 3px"><br>

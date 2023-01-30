@@ -2,22 +2,28 @@
 <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: red; border-bottom: 3px solid black;">
     <div class="container-fluid">
         <a href="/" class="navbar-brand text-danger">
-        <img src="/logo2.png" alt="Pokemon Teams" style="height: 30px; border-right: 2px solid black; padding-right: 10px;"></a>
+            <img src="/logo2.png" alt="Pokemon Teams"
+                style="height: 30px; border-right: 2px solid black; padding-right: 10px;"></a>
         {% if loggedIn %}
-        <a href="/profile" class="btn btn-warning nav-link text-primary me-3" style="border: 2px solid blue ; border-radius: 2px; padding: 2px 5px 2px 5px">{{ username }} </a>
+        <a href="/profile" class="btn btn-warning nav-link text-primary me-3"
+            style="border: 2px solid blue ; border-radius: 2px; padding: 2px 5px 2px 5px">{{ username }}
+        </a>
         {% endif %}
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             {% if loggedIn %}
-                <a href="/pokemon/Dex?offset=0&limit=27" class="nav-link text-light me-3">PokeDex</a>
-                <a href="/team" class="nav-link text-light me-3">Teams</a>
-                <a href="/team/new" class="nav-link text-light me-3">New Team</a>
-                <a href="/auth/logout" class="nav-link text-light me-3">Log Out</a>
+            <a href="/pokemon/Dex?offset=0&limit=27" class="nav-link text-light me-3">PokeDex</a>
+            <a href="/team" class="nav-link text-light me-3">Teams</a>
+            <a href="/team/new" class="nav-link text-light me-3">New Team</a>
+            <a href="/auth/logout" class="nav-link text-light me-3">Log Out</a>
             {% else %}
-                <a href="/auth/signup" class="nav-link text-light me-3">Sign Up</a>
-                <a href="/auth/login" class="nav-link text-light me-3">Sign In</a>
+            <a href="/pokemon/Dex?offset=0&limit=27" class="nav-link text-light me-3">PokeDex</a>
+            <a href="/team" class="nav-link text-light me-3">Teams</a>
+            <a href="/auth/signup" class="nav-link text-light me-3">Sign Up</a>
+            <a href="/auth/login" class="nav-link text-light me-3">Sign In</a>
             {% endif %}
         </div>
     </div>
