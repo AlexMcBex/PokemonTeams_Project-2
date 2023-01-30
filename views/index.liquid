@@ -5,7 +5,15 @@
 </div>
 <div class="row">
     <a href="/pokemon/Dex?offset=0&limit=27" class="btn ms-3 mt-3" style="background: red; color: white;">PokeDex</a>
-    <a href="/team/new" class="btn btn-primary ms-3 mt-3">
-    New Team</a>
+    <a href="/team/" class="btn btn-primary ms-3 mt-3" >Created Teams</a>
+    {% if loggedIn %}
+    <a href="/team/new" class="btn btn-success ms-3 mt-3"> New Team</a>
+    <a href="/profile" class="btn btn-warning ms-3 mt-3"> Your Profile</a>
+    <a href="/auth/logout" class="btn btn-danger ms-3 mt-3">Log Out</a>
+    {% else %}
+    <a href="/auth/login" class="btn btn-success ms-3 mt-3">Log In with an existing Account</a>
+    <a href="/auth/signup" class="btn btn-success ms-3 mt-3">Create an Account</a>
+    {% endif %}
+    </div>
     </div>
 {% endblock %}

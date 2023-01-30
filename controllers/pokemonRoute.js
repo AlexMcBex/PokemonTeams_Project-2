@@ -75,6 +75,11 @@ router.get('/Dex/type/:typeName/', async (req, res) => {
 }
 )
 
+// GET - Pokedex, pick Region filter
+router.get('/Dex/region/', (req, res) => {
+	res.render('pokemon/regionSelect', { ...req.session })
+})
+
 
 //GET -POKEDEX SHOW route - API get by name
 router.get('/Dex/:name', async (req, res) => {
@@ -100,25 +105,7 @@ router.get('/Dex/:id', async (req, res) => {
 	res.render('pokemon/DexShow', { username, pokemonData, pokemonPre, pokemonNext, loggedIn, userId })
 })
 
-// show route
-router.get('/:id', async (req, res) => {
-	const pokemonId = req.params.id
-	Pokemon.findById(pokemonId)
-		.populate('owner')
-		.populate('owner.username', '-password')
-		.then(async pokemon => {
-			const pokemonName = pokemon.name.toLowerCase()
-			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
-			const pokemonData = pokemonInfo.data
-			// console.log(pokemonData)
-			const { username, loggedIn, userId } = req.session
-			res.render('pokemon/show', { pokemon, username, pokemonData, loggedIn, userId })
-		})
-		.catch((error) => {
-			res.redirect(`/error?error=${error}`)
-			console.log(error)
-		})
-})
+
 
 
 // show in team route
@@ -166,6 +153,25 @@ router.get('/mine', (req, res) => {
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
+		})
+})
+// show route
+router.get('/:id', async (req, res) => {
+	const pokemonId = req.params.id
+	Pokemon.findById(pokemonId)
+		.populate('owner')
+		.populate('owner.username', '-password')
+		.then(async pokemon => {
+			const pokemonName = pokemon.name.toLowerCase()
+			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
+			const pokemonData = pokemonInfo.data
+			// console.log(pokemonData)
+			const { username, loggedIn, userId } = req.session
+			res.render('pokemon/show', { pokemon, username, pokemonData, loggedIn, userId })
+		})
+		.catch((error) => {
+			res.redirect(`/error?error=${error}`)
+			console.log(error)
 		})
 })
 

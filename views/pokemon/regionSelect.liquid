@@ -1,0 +1,22 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  <div class="container-md">
+    <h2 class="mt-3 mb-3" style="display: inline;">Filter By Region
+    </h2>
+    <br>
+    <a
+      href="/pokemon/Dex/?offset=0&limit=27"
+      class="btn btn-warning ms-3 mt-3"
+      style="width: 200px; ">Go Back</a>
+    <div class="row mt-3">
+      <a style="width: 400px;" class="ms-3 mt-3 btn btn-success" href="/pokemon/Dex/?offset=0&limit=151">Kanto</a>
+      <a style="width: 400px;" class="ms-3 mt-3 btn btn-success" href="/pokemon/Dex/?offset=151&limit=100">Johto </a>
+      <a style="width: 400px;" class="ms-3 mt-3 btn btn-success" href="/pokemon/Dex/?offset=251&limit=135">Hoenn</a>
+      <a style="width: 400px;" class="ms-3 mt-3 btn btn-success" href="/pokemon/Dex/?offset=386&limit=107">Sinnoh</a>
+      <a style="width: 400px;" class="ms-3 mt-3 btn btn-success" href="/pokemon/Dex/?offset=493&limit=156">Unova</a>
+      <a style="width: 400px;" class="ms-3 mt-3 btn btn-success" href="/pokemon/Dex/?offset=649&limit=72">Kalos </a>
+      <a style="width: 400px;" class="ms-3 mt-3 btn btn-success" href="/pokemon/Dex/?offset=721&limit=88">Alola </a>
+      <a style="width: 400px;" class="ms-3 mt-3 btn btn-success" href="/pokemon/Dex/?offset=809&limit=96">Galar</a>
+    </div>
+  </div>
+{% endblock %}

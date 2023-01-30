@@ -7,8 +7,6 @@ const Pokemon = require('../models/pokemon')
 // Create router
 const router = express.Router()
 
-
-
 // Routes
 
 // index ALL
@@ -31,25 +29,8 @@ router.get('/', (req, res) => {
 })
 
 
-// show route
-router.get('/:id', (req, res) => {
-	const teamId = req.params.id
-	Team.findById(teamId)
-		.populate('pokemons')
-		.populate('owner')
-		.populate('owner.username', '-password')
 
-		.then(team => {
-			const {username, loggedIn, userId} = req.session
-			res.render('team/show', { team, username, loggedIn, userId })
-			// console.log(team.pokemons)
-		})
-		.catch((error) => {
-			res.redirect(`/error?error=${error}`)
-		})
-})
-
-// Router Middleware
+///////////////////// Router Middleware//////////////////////////////////////////////
 // Authorization middleware
 // If you have some resources that should be accessible to everyone regardless of loggedIn status, this middleware can be moved, commented out, or deleted. 
 router.use((req, res, next) => {
@@ -62,6 +43,7 @@ router.use((req, res, next) => {
 		res.redirect('/auth/login')
 	}
 })
+/////////////////////////////////////////////////////////////////////////////////////////
 
 // index that shows only the user's team
 router.get('/mine', (req, res) => {
@@ -83,8 +65,28 @@ router.get('/mine', (req, res) => {
 // new route -> GET route that renders our page with the form
 router.get('/new', (req, res) => {
 	const { username, userId, loggedIn } = req.session
-	res.render('team/new', { username, loggedIn })
+	res.render('team/new', { ...req.session })
 })
+
+// show route
+router.get('/:id', (req, res) => {
+	const teamId = req.params.id
+	Team.findById(teamId)
+		.populate('pokemons')
+		.populate('owner')
+		.populate('owner.username', '-password')
+
+		.then(team => {
+			const {username, loggedIn, userId} = req.session
+			res.render('team/show', { team, username, loggedIn, userId })
+			// console.log(team.pokemons)
+		})
+		.catch((error) => {
+			res.redirect(`/error?error=${error}`)
+		})
+})
+
+
 
 // GET - add pokemon to the team
 router.get('/:id/addPokemon/', async (req, res) => {		

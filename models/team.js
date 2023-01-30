@@ -3,6 +3,7 @@ const mongoose = require('./connection')
 
 // import user model for populate
 const User = require('./user')
+const Pokemon = require('./pokemon')
 
 // destructure the schema and model constructors from mongoose
 const { Schema, model } = mongoose
