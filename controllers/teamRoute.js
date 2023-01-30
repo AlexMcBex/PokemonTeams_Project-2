@@ -150,7 +150,11 @@ router.get('/:teamId/addPokemon/type/:typeName/', async (req, res) => {
 	})
 })
 
-
+// GET - Team, add pokemon, filter by region
+router.get('/:teamId/region', (req, res) => {
+	const teamId = req.params.teamId
+	res.render('team/regionSelect', { teamId, ...req.session })
+})
 
 		//POST - update team with new pokemon
 router.get('/:teamid/addPokemon/:pkmnname', async (req, res)=> {

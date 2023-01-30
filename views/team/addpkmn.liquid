@@ -9,7 +9,10 @@
     <div class="btn ms-3" style="width: 200px; background: rgb(180, 168, 103)">Previous Page</div>
     {% endif %}
     <a href="/team/{{ team.id }}/addPokemon/?offset={{ pokemonNext }}&limit=27" class="btn btn-warning ms-3" style="width: 200px; ">Next Page</a><br>
+    <div class="row">
     <a href="/team/{{ team.id }}/addPokemon/type" class="btn btn-primary ms-3 mt-3" style="width: 200px; ">Filter by Type</a>
+    <a href="/team/{{ team.id }}/region" class="btn btn-primary ms-3 mt-3" style="width: 200px; ">Filter by Region</a>
+    </div>
   <div class="row mt-3">
     {% for pkmn in pokemonData %}
       <div class="card ps-0 ms-3 mb-3" style="width: 16rem; border-radius: 200px; padding-left: -1px; height: 16rem; text-align: center;">
