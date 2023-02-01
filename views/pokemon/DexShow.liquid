@@ -3,23 +3,20 @@
 <div class="container-sm mb-4">
     <article>
         <h1 class="mt-3 " style="text-transform: capitalize;"> <img class =" {{ pokemonData.types.0.type.name }}"style="border-width: 3px; border-radius:20px;"src="{{ pokemonData.sprites.front_default }}" alt="no-sprite"> <i>{{ pokemonData.id}} -</i>
-             {{ pokemonData.name}}
+             {{ pokemonData.name }}
             </h1> 
             
         <img src="{{ pokemonData.sprites.other.official-artwork.front_default }}" alt="artwork">
         <h3 style="text-transform: capitalize;">Type: {{ pokemonData.types.0.type.name }}  {{ pokemonData.types.1.type.name }}</h3>
-        {% if pokemon.owner == userId %}
-        <div class="btn-group">
-
-            <a href="/pokemon/{{ pokemon.id }}/edit" class="btn btn-primary">Edit</a>
-            <form action="/pokemon/{{ pokemon.id }}?_method=DELETE" method="POST">
-                <input type="submit" value="Delete" class="btn btn-danger"> 
-            </form>
-        </div>
-        {% endif %}
+        <hr>
     </article>
-    <a href="/pokemon/Dex/{{ pokemonPre }}"  class="btn btn-warning"><--- Previous</a>
-    <a href="/pokemon/Dex/{{ pokemonNext }}"  class="btn btn-warning">Next ---> </a>
+    {% if loggedIn %}
+    <a class="btn btn-primary mb-3 mt-3" href="/pokemon/addToTeam/{{ pokemonData.name }}">Add  <span style="text-transform: capitalize">{{ pokemonData.name }}</span> to a team</a><br>
+    {% else %}
+    <div class="mb-3"><a href="/auth/login" class="btn btn-primary btn-sm">Sign In</a> with your account to add <span style="text-transform: capitalize">{{ pokemonData.name }}</span>  to a team</div>
+    {% endif %}
+    <a  style="border: 3px solid blue;" href="/pokemon/Dex/{{ pokemonPre }}"  class="btn btn-warning"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemonData.id | minus: 1 }}.png"><--- Previous</a>
+    <a style="border: 3px solid blue;" href="/pokemon/Dex/{{ pokemonNext }}"  class="btn btn-warning">Next ---> <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemonData.id | plus: 1 }}.png" alt=""> </a>
 </div>
 
 {% endblock %}

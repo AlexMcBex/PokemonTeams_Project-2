@@ -1,0 +1,32 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  <div class="container-md">
+    <img  class="{{ pokemonData.types.0.type.name }} ms-3 mb-3 mt-3 me-3"src="{{ pokemonData.sprites.front_default }}" style="border-radius: 5px; border-width: 2px; padding: 2px; float: left" alt="N/A"><h2 class="display-6 mb-0" style="align: right;"> Select the team you want to <br>add <span style="text-transform: capitalize; font-style: italic">{{ pokemonData.name }}</span> to...</h2>
+
+    <a href="/pokemon/Dex/{{ pokemonData.name }}" class="btn btn-warning" style="align: right">Go Back</a>
+    <hr>
+    <div class="row">
+      {% for team in teams %}
+        <div class="card ms-2 mb-2" style="width: 20rem;border: 3px solid rgb(88, 88, 88)">
+          <h4 class="card-header">{{ team.owner.username }}'s Team "{{ team.name }}"</h4>
+          <div class="card-body">
+          <h6>{{ team.description }}</h6>
+          <div class="grid">
+          {% for pokemon in team.pokemons %}
+            <img  class="{{ pokemon.type1 }} ms-3 mb-3"src="{{ pokemon.sprite }}" style="border-radius: 5px; border: 2px solid black; padding: 2px" alt="">
+            {% endfor %}
+            {% if team.pokemons.length > 5 %}
+            <div class="btn btn-danger ms-3" style=" width:14rem">FULL TEAM</div>
+            {% else %}
+            <a href="/team/{{ team.id }}/addPokemon/{{ pokemonData.name }}" class="btn ms-3 btn-success" style=" width:14rem">
+             Add <span style="text-transform: capitalize">{{ pokemonData.name  }}
+              </span>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

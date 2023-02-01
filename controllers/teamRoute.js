@@ -47,22 +47,22 @@ router.use((req, res, next) => {
 
 
 
-// index that shows only the user's team
-router.get('/mine', (req, res) => {
-    // destructure user info from req.session
-    const { username, userId, loggedIn } = req.session
-	Team.find({ owner: userId })
-		.then(teams => {
-			res.render('team/index', { teams, username, loggedIn })
-			.catch(err =>{
-				res.sendStatus(404)
-				console.log(err)
-			})
-		})
-		.catch(error => {
-			res.redirect(`/error?error=${error}`)
-		})
-})
+// index that shows only the user's team - OBSOLETE
+// router.get('/mine', (req, res) => {
+//     // destructure user info from req.session
+//     const { username, userId, loggedIn } = req.session
+// 	Team.find({ owner: userId })
+// 		.then(teams => {
+// 			res.render('team/index', { teams, username, loggedIn })
+// 			.catch(err =>{
+// 				res.sendStatus(404)
+// 				console.log(err)
+// 			})
+// 		})
+// 		.catch(error => {
+// 			res.redirect(`/error?error=${error}`)
+// 		})
+// })
 
 // new route -> GET route that renders our page with the form
 router.get('/new', (req, res) => {

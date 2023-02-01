@@ -41,10 +41,11 @@ router.get('/Dex/', async (req, res, pkmn) => {
 	const pokemonNext = (offNum + limitNum)
 	const firstlist = (offNum + 1)
 	let pokemonPre = (offNum - limitNum)
-	if (offset == 891) {
-		limit = 14
-		pokemonPre = 864
+	if (offset == 1269) {
+		limit = 3
+		pokemonPre = 1243
 	}
+
 	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/?offset=${offset}&limit=${limit}`)
 	const pokemonData = pokemonInfo.data.results
 	res.render('pokemon/Dex', { pokemonData, offNum, offNum, firstlist, pokemonNext, pokemonPre, ...req.session })
@@ -61,7 +62,11 @@ router.get('/Dex/search', async (req, res, pkmn) => {
 	for (let i = 0; i < pokemonData.length; i++){
 		if (pokemonData[i].name.includes(nameLow)){
 			filtered.push(pokemonData[i])
-			indexes.push((pokemonData.indexOf(pokemonData[i]) + 1))
+			if((pokemonData.indexOf(pokemonData[i]) + 1) > 1008){
+				indexes.push((pokemonData.indexOf(pokemonData[i]) + 8993))
+			}else{
+				indexes.push((pokemonData.indexOf(pokemonData[i]) + 1))
+			}
 		} 
 	}
 	console.log(nameLow)
@@ -110,6 +115,7 @@ router.get('/Dex/:name', async (req, res) => {
 	res.render('pokemon/DexShow', { username, pokemonData, pokemonPre, pokemonNext, loggedIn, userId })
 })
 
+
 //GET -POKEDEX SHOW route - API get by id
 router.get('/Dex/:id', async (req, res) => {
 	const pokemonId = req.params.name.toLowerCase()
@@ -123,28 +129,6 @@ router.get('/Dex/:id', async (req, res) => {
 })
 
 
-
-
-// show in team route
-router.get('/:teamId/:id', async (req, res) => {
-	const teamId = req.params.teamId
-	const pokemonId = req.params.id
-	Pokemon.findById(pokemonId)
-		.populate('owner')
-		.populate('owner.username', '-password')
-		.then(async pokemon => {
-			const pokemonName = pokemon.name.toLowerCase()
-			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
-			const pokemonData = pokemonInfo.data
-			// console.log(pokemonData)
-			const { username, loggedIn, userId } = req.session
-			res.render('pokemon/show', { pokemon, username, pokemonData, loggedIn, userId, teamId })
-		})
-		.catch((error) => {
-			res.redirect(`/error?error=${error}`)
-			console.log(error)
-		})
-})
 
 //////////////////////////// Authorization middleware///////////////////////////////////
 // If you have some resources that should be accessible to everyone regardless of loggedIn status, this middleware can be moved, commented out, or deleted. 
@@ -165,32 +149,77 @@ router.get('/mine', (req, res) => {
 	// destructure user info from req.session
 	const { username, userId, loggedIn } = req.session
 	Pokemon.find({ owner: userId })
-		.then(pokemons => {
-			res.render('pokemon/index', { pokemons, username, loggedIn })
+	.then(pokemons => {
+		res.render('pokemon/index', { pokemons, username, loggedIn })
+	})
+	.catch(error => {
+		res.redirect(`/error?error=${error}`)
+	})
+})
+
+//GET -Pick team to add the pokemon to
+router.get('/addToTeam/:pokemonName', async (req, res) => {
+	const pokemonName = req.params.pokemonName.toLowerCase()
+	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
+	const pokemonData = pokemonInfo.data
+	const { username, loggedIn, userId } = req.session
+	Team.find({ owner: userId })
+	.populate('pokemons')
+	.populate('pokemons.name')
+	.populate('owner')
+	.populate('owner.username', '-password')
+		.then(teams => {
+		res.render('pokemon/addToTeam', { username, pokemonData, pokemonName, loggedIn, userId, teams })
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
 		})
 })
-// show route
-router.get('/:id', async (req, res) => {
+
+
+
+// show in team route
+router.get('/:teamId/:id', async (req, res) => {
+	const teamId = req.params.teamId
 	const pokemonId = req.params.id
 	Pokemon.findById(pokemonId)
-		.populate('owner')
-		.populate('owner.username', '-password')
-		.then(async pokemon => {
-			const pokemonName = pokemon.name.toLowerCase()
-			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
-			const pokemonData = pokemonInfo.data
+	.populate('owner')
+	.populate('owner.username', '-password')
+	.then(async pokemon => {
+		const pokemonName = pokemon.name.toLowerCase()
+		const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
+		const pokemonData = pokemonInfo.data
 			// console.log(pokemonData)
 			const { username, loggedIn, userId } = req.session
-			res.render('pokemon/show', { pokemon, username, pokemonData, loggedIn, userId })
+			res.render('pokemon/show', { pokemon, username, pokemonData, loggedIn, userId, teamId })
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
 			console.log(error)
 		})
+	})
+
+
+// show route
+router.get('/:id', async (req, res) => {
+	const pokemonId = req.params.id
+	Pokemon.findById(pokemonId)
+	.populate('owner')
+	.populate('owner.username', '-password')
+	.then(async pokemon => {
+		const pokemonName = pokemon.name.toLowerCase()
+		const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
+		const pokemonData = pokemonInfo.data
+		// console.log(pokemonData)
+		const { username, loggedIn, userId } = req.session
+		res.render('pokemon/show', { pokemon, username, pokemonData, loggedIn, userId })
+	})
+	.catch((error) => {
+		res.redirect(`/error?error=${error}`)
+		console.log(error)
+	})
 })
+
 
 // new route -> GET route that renders our page with the form
 router.get('/new', (req, res) => {
