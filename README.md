@@ -2,7 +2,7 @@
 
 ## Overview
 Pokemon Teams is a full-stack application Inspired by my love for pixel art and the Pokemon franchise. It allows the users to browse several informations on over 800 Pokemons (getting them from the [PokeAPI](https://pokeapi.co)) and, once logged in with their account, make their own teams using the informations they found.
-The User should also be able to make lists of his favorite pokemons and select his avatar from a list of trainers avatars (choosing it from the trainer sprites avaiable on [bulbagarden.net](https://archives.bulbagarden.net))
+The User should also be able to make lists of his favorite pokemons.
 
 ## Technologies used
 - HTML5
@@ -19,7 +19,6 @@ The User should also be able to make lists of his favorite pokemons and select h
 
 ## Sources used
 - [PokeAPI](https://pokeapi.co)
-- [Bulbagarden Archives](https://archives.bulbagarden.net/wiki/Category:Generation_III_Trainer_sprites)
 - [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
 
 ## Objectives
@@ -34,7 +33,7 @@ The User should also be able to make lists of his favorite pokemons and select h
 - As a user I would like to filter the pokemons to visualize
 - As a user I would like to choose what moves a pokemon should have
 - As a user I would like to have a dynamic interface based on the different kinds of pokemon
-- As a user I would like to make a card out of my trainer infos visible outsidde of the app too
+- As a user I would like to make a card out of my trainer infos visible outside of the app too
 
 ## Routes Table
 
@@ -42,31 +41,36 @@ The User should also be able to make lists of his favorite pokemons and select h
 
 | **URL** | **HTTP Verb** | **Action** |
 |------|---------------|---------|
-| URL | GET | index   |
-| URL |  GET | show   |
-| URL |  GET |  new     |
-| URL |  POST |  create |
-| URL | GET |  edit      |
-| URL | PATCH/PUT |  update |
-| URL | DELETE  |  destroy |
+| /pokemon/ | GET | index   |
+| /pokemon/:pokemonId |  GET | show   |
+| /pokemon/Dex | GET | index   |
+| /pokemon/Dex/:pokemonName |  GET | show   |
+| /pokemon/Dex/:pokemonId |  GET | show   |
+| /pokemon/ |  POST |  create |
+| /pokemon/:pokemonId | DELETE  |  destroy |
 
 ### Trainers
 | **URL** | **HTTP Verb** | **Action** |
 |------|---------------|---------|
-| URL | GET | index   |
-| URL |  GET | show   |
-| URL |  GET |  new     |
-| URL |  POST |  create |
-| URL | GET |  edit      |
-| URL | PATCH/PUT |  update |
-| URL | DELETE  |  destroy |
+| /team | GET | index   |
+| /team/:teamId |  GET | show   |
+| /team/new|  GET |  new     |
+| /team  |  POST |  create |
+| /team/:teamId/edit | GET |  edit      |
+| /team/:teamId/addPokemon/:pokemonId| PATCH/PUT |  update |
+| /team/:teamId | DELETE  |  destroy |
+
+### Profile
+| **URL** | **HTTP Verb** | **Action** |
+|------|---------------|---------|
+| /profile | GET | index   |
 
 ### Users
 | **URL**          | **HTTP Verb**|**Action**|
 |------------------|--------------|----------|
-| /users/signup    | POST         | create  
-| /users/login     | POST         | create       
-| /users/logout    | DELETE       | destroy  
+| /auth/signup    | POST         | create  
+| /auth/login     | POST         | create       
+| /auth/logout    | DELETE       | destroy  
 
 
 ## Entity Relationship Diagram
