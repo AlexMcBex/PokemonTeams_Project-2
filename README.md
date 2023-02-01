@@ -78,14 +78,19 @@ The User should also be able to make lists of his favorite pokemons.
 
 ## Wireframe
 INDEX- Pokemon
-![indexPokemon](/img/index-pkmn.jpg)
+![HomePage](/img/home.png)
+
+Profile Page
+![Profile](/img/profile.png)
+
+Pokedex
+![Pokedex](/img/pokedex.png)
 
 Show - Pokemon
-![ShowPokemon](/img/show-pkmn.jpg)
+![ShowPokemon](/img/show.png)
 
-Index - Teams
-![IndexTeams](/img/index-teams.jpg)
+Show - Team
+![ShowTeam](/img/showteam.png)
 
-Show - Teams
-![ShowTeams](/img//show-team.jpg)
-
+Index teams
+![teams](/img/teams.png)

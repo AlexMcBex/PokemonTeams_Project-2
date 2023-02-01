@@ -17,7 +17,7 @@
         <span class="{{ pokemonData.types.1.type.name }}"> {{ pokemonData.types.1.type.name }}</span>
         </h3>
 
-        <div style="text-transform: capitalize; background: rgba(0, 0, 0, 0.1); border: 2px solid black; border-radius: 5px; padding: 5px;" >
+        <div style="width: 50%; text-transform: capitalize; background: rgba(0, 0, 0, 0.1); border: 2px solid black; border-radius: 5px; padding: 5px;" >
             <h4>Stats:</h4>
             {{ pokemonData.stats.0.stat.name }}: {{ pokemonData.stats.0.base_stat }} <div class="mb-0" style="background: orange; height: 15px; border-radius: 2px; width: {{ pokemonData.stats.0.base_stat | times: 100 | divided_by: 255 }}%;"></div> <br> 
             {{ pokemonData.stats.1.stat.name }}: {{ pokemonData.stats.1.base_stat }} <div class="mb-0" style="background: orange; height: 15px; border-radius: 2px; width: {{ pokemonData.stats.1.base_stat | times: 100 | divided_by: 255 }}%;"></div> <br> 
