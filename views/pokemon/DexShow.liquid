@@ -32,12 +32,12 @@
     {% if loggedIn %}
     <a class="btn btn-primary mb-3 mt-3" href="/pokemon/addToTeam/{{ pokemonData.name }}">Add  <span style="text-transform: capitalize">{{ pokemonData.name }}</span> to a team</a><br>
     {% else %}
-    <div class="mb-3"><a href="/auth/login" class="btn btn-primary btn-sm">Sign In</a> with your account to add <span style="text-transform: capitalize">{{ pokemonData.name }}</span>  to a team</div>
+    <div class="mb-3"> <a href="/auth/login" class="btn btn-primary btn-sm">Sign In</a> with your account to add <span style="text-transform: capitalize">{{ pokemonData.name }}</span>  to a team</div>
     {% endif %}
     {% if pokemonData.id == 10001 %}
-    <a  style="border: 3px solid blue;" href="/pokemon/Dex/1008"  class="btn btn-warning"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1008.png"><--- Previous</a>
+    <a style="border: 3px solid blue;" href="/pokemon/Dex/1008"  class="btn btn-warning"> <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1008.png"><--- Previous</a>
     {% elsif pokemonData.id == 1 %}
-        
+
     {% else %}
     <a  style="border: 3px solid blue;" href="/pokemon/Dex/{{ pokemonPre }}"  class="btn btn-warning"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemonData.id | minus: 1 }}.png"><--- Previous</a>
     {% endif %}

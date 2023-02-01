@@ -125,7 +125,11 @@ router.get('/:teamId/search', async (req, res, pkmn) => {
 	for (let i = 0; i < pokemonData.length; i++){
 		if (pokemonData[i].name.includes(nameLow)){
 			filtered.push(pokemonData[i])
-			indexes.push((pokemonData.indexOf(pokemonData[i]) + 1))
+			if((pokemonData.indexOf(pokemonData[i]) + 1) > 1008){
+				indexes.push((pokemonData.indexOf(pokemonData[i]) + 8993))
+			}else{
+				indexes.push((pokemonData.indexOf(pokemonData[i]) + 1))
+			}
 		} 
 	}
 	console.log(teamId)
@@ -199,6 +203,12 @@ router.get('/:teamid/addPokemon/:pkmnname', async (req, res)=> {
 	} else {
 		req.body.type2 = pokemonData.types[1].type.name
 	}
+	req.body.stats = []
+	for (let i = 0; i < pokemonData.stats.length ; i++){
+		req.body.stats.push(pokemonData.stats[i].base_stat)
+	}
+	
+	// console.log(req.body.stats)
 	req.body.sprite = pokemonData.sprites.front_default
 	req.body.team = teamId
 	const newPokemon = req.body

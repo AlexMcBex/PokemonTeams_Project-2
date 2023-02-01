@@ -22,8 +22,12 @@
         <a style="text-transform: capitalize; text-decoration: none;" href="/team/{{ team.id }}/addPokemon/{{ pkmn.name }}" class="">
         <h4 class="pt-3 mt-0 mb-0 ms-0"style="text-transform: capitalize; border-radius: 200px 200px 0 0; background-color: red; color: white; height: 8rem; width: 16rem; border-bottom: 25px solid black">{{ forloop.index | plus: offNum }} <br>{{ pkmn.name }} </h4>
         <div class="card-body">
-             <img class="mt-0 mb-0"src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ forloop.index | plus: offNum }}.png" alt="N/A">
-          
+          {% assign pokeIndex = forloop.index | plus: offNum %}
+          {% if pokeIndex > 1008 %}
+          <img class="mt-0 mb-0"src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ forloop.index | plus: offNum | plus: 8992 }}.png" style="width:96px; height:96px"alt="">
+             {% else %}
+             <img class="mt-0 mb-0"src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ forloop.index | plus: offNum }}.png" style="width:96px; height:96px" alt="na">
+          {% endif %}
              </div>
              </a>
       </div>
