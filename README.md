@@ -1,4 +1,4 @@
-# POKEMON TEAMS
+# ![Pokemon Teams](./public/logo.png)
 
 ## Overview
 Pokemon Teams is a full-stack application Inspired by my love for pixel art and the Pokemon franchise. It allows the users to browse several informations on over 800 Pokemons (getting them from the [PokeAPI](https://pokeapi.co)) and, once logged in with their account, make their own teams using the informations they found.
@@ -25,8 +25,8 @@ The User should also be able to make lists of his favorite pokemons.
 - [x] Made the app functional with all the routes correctly working
 - [x] Allowed users to sign up, login and logout of the site
 - [x] Incorporated [PokeAPI](https://pokeapi.co)
+- [x] Deploy the app online
 - [ ] Users can export their trainers cards out of the app
-- [ ] Deploy the app online
 
 ## User Stories
 - As a user I would like to be able to search for any pokemon 
