@@ -30,6 +30,11 @@ app.use('/pokemon', PokemonRouter)
 app.use('/team', TeamRouter)
 app.use('/profile', ProfileRouter)
 
+app.get('/health', (req, res) => {
+	res.status(200).send('OK')
+})
+
+
 
 app.get('/', (req, res) => {
     const { username, userId, loggedIn } = req.session
