@@ -49,18 +49,18 @@ router.get('/Dex/search', async (req, res, pkmn) => {
 	const pokemonData = pokemonInfo.data.results
 	let filtered = []
 	let indexes = []
-	for (let i = 0; i < pokemonData.length; i++){
-		if (pokemonData[i].name.includes(nameLow)){
+	for (let i = 0; i < pokemonData.length; i++) {
+		if (pokemonData[i].name.includes(nameLow)) {
 			filtered.push(pokemonData[i])
-			if((pokemonData.indexOf(pokemonData[i]) + 1) > 1008){
+			if ((pokemonData.indexOf(pokemonData[i]) + 1) > 1008) {
 				indexes.push((pokemonData.indexOf(pokemonData[i]) + 8993))
-			}else{
+			} else {
 				indexes.push((pokemonData.indexOf(pokemonData[i]) + 1))
 			}
-		} 
+		}
 	}
 	console.log(nameLow)
-	res.render('pokemon/DexSearch', { nameTBF, nameLow, indexes, filtered, pokemonData, ...req.session})
+	res.render('pokemon/DexSearch', { nameTBF, nameLow, indexes, filtered, pokemonData, ...req.session })
 })
 
 // POKEDEX - Filter Pokemons by Type
@@ -74,8 +74,8 @@ router.get('/Dex/type/', async (req, res) => {
 // POKEDEX - Index of filtered pokemons
 router.get('/Dex/type/:typeName/', async (req, res) => {
 	const typeName = req.params.typeName
-	const offNum = Number(offset)
 	const offset = req.query.offset
+	const offNum = Number(offset)
 	const limit = req.query.limit
 	const limitNum = Number(limit)
 	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/type/${typeName}?offset=${offset}&limit=${limit}`)
@@ -140,12 +140,12 @@ router.get('/mine', (req, res) => {
 	// destructure user info from req.session
 	const { username, userId, loggedIn } = req.session
 	Pokemon.find({ owner: userId })
-	.then(pokemons => {
-		res.render('pokemon/index', { pokemons, username, loggedIn })
-	})
-	.catch(error => {
-		res.redirect(`/error?error=${error}`)
-	})
+		.then(pokemons => {
+			res.render('pokemon/index', { pokemons, username, loggedIn })
+		})
+		.catch(error => {
+			res.redirect(`/error?error=${error}`)
+		})
 })
 
 // GET PICK TEAM - choose what user's team add the pokemon({:pokemonName}) to
@@ -155,18 +155,18 @@ router.get('/addToTeam/:pokemonName', async (req, res) => {
 	const pokemonData = pokemonInfo.data
 	const { username, loggedIn, userId } = req.session
 	Team.find({ owner: userId })
-	.populate('pokemons')
-	.populate('pokemons.name')
-	.populate('owner')
-	.populate('owner.username', '-password')
+		.populate('pokemons')
+		.populate('pokemons.name')
+		.populate('owner')
+		.populate('owner.username', '-password')
 		.then(teams => {
-		res.render('pokemon/addToTeam', { username, pokemonData, pokemonName, loggedIn, userId, teams })
+			res.render('pokemon/addToTeam', { username, pokemonData, pokemonName, loggedIn, userId, teams })
 		})
 		.catch(error => {
 			res.redirect(`/error?error=${error}`)
 		})
-	})
-	
+})
+
 // // edit route -> GET that takes us to the edit form view- OBSOLETE
 // router.get('/:id/edit', (req, res) => {
 // 	// we need to get the id
@@ -204,12 +204,12 @@ router.get('/:teamId/:id', async (req, res) => {
 	const teamId = req.params.teamId
 	const pokemonId = req.params.id
 	Pokemon.findById(pokemonId)
-	.populate('owner')
-	.populate('owner.username', '-password')
-	.then(async pokemon => {
-		const pokemonName = pokemon.name.toLowerCase()
-		const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
-		const pokemonData = pokemonInfo.data
+		.populate('owner')
+		.populate('owner.username', '-password')
+		.then(async pokemon => {
+			const pokemonName = pokemon.name.toLowerCase()
+			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
+			const pokemonData = pokemonInfo.data
 			const { username, loggedIn, userId } = req.session
 			res.render('pokemon/show', { pokemon, username, pokemonData, loggedIn, userId, teamId })
 		})
@@ -217,25 +217,25 @@ router.get('/:teamId/:id', async (req, res) => {
 			res.redirect(`/error?error=${error}`)
 			console.log(error)
 		})
-	})
+})
 
 // SHOW - show pokemon instance
 router.get('/:id', async (req, res) => {
 	const pokemonId = req.params.id
 	Pokemon.findById(pokemonId)
-	.populate('owner')
-	.populate('owner.username', '-password')
-	.then(async pokemon => {
-		const pokemonName = pokemon.name.toLowerCase()
-		const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
-		const pokemonData = pokemonInfo.data
-		const { username, loggedIn, userId } = req.session
-		res.render('pokemon/show', { pokemon, username, pokemonData, loggedIn, userId })
-	})
-	.catch((error) => {
-		res.redirect(`/error?error=${error}`)
-		console.log(error)
-	})
+		.populate('owner')
+		.populate('owner.username', '-password')
+		.then(async pokemon => {
+			const pokemonName = pokemon.name.toLowerCase()
+			const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/${pokemonName}`)
+			const pokemonData = pokemonInfo.data
+			const { username, loggedIn, userId } = req.session
+			res.render('pokemon/show', { pokemon, username, pokemonData, loggedIn, userId })
+		})
+		.catch((error) => {
+			res.redirect(`/error?error=${error}`)
+			console.log(error)
+		})
 })
 
 // POST - Create a new instance of a pokemon
