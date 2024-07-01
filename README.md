@@ -18,8 +18,9 @@ The User should also be able to make lists of his favorite pokemons.
 - Axios
 
 ## Sources used
-- [PokeAPI](https://pokeapi.co)
-- [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+- [PokeAPI](https://pokeapi.co) 
+- [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/) for styling
+- [Fly.io](https://fly.io) for deployment
 
 ## Objectives
 - [x] Made the app functional with all the routes correctly working
