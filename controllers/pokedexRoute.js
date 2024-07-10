@@ -38,15 +38,15 @@ router.get('/', async(req, res) => {
 router.get('/search', async (req, res, pkmn) => {
 	const nameTBF = req.query.name
 	const nameLow = nameTBF.toLowerCase()
-	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/?offset=0&limit=1279`)
+	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/?offset=0&limit=1500`)
 	const pokemonData = pokemonInfo.data.results
 	let filtered = []
 	let indexes = []
 	for (let i = 0; i < pokemonData.length; i++) {
 		if (pokemonData[i].name.includes(nameLow)) {
 			filtered.push(pokemonData[i])
-			if ((pokemonData.indexOf(pokemonData[i]) + 1) > 1008) {
-				indexes.push((pokemonData.indexOf(pokemonData[i]) + 8993))
+			if ((pokemonData.indexOf(pokemonData[i]) + 1) > 1024) {
+				indexes.push((pokemonData.indexOf(pokemonData[i]) + 8976))
 			} else {
 				indexes.push((pokemonData.indexOf(pokemonData[i]) + 1))
 			}

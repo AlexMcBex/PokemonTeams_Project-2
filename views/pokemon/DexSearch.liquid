@@ -41,7 +41,13 @@
             href="/pokedex/{{ pkmn.name }}"
             class="">
 
-            <h4 class="pt-3 mt-0 mb-0 ms-0" style="text-transform: capitalize; border-radius: 200px 200px 0 0; background-color: red; color: white; height: 8rem; width: 16rem; border-bottom: 25px solid black">{{ indexes[forloop.index0] }} <br>{{ pkmn.name }}</h4>
+            <h4 class="pt-3 mt-0 mb-0 ms-0" style="text-transform: capitalize; border-radius: 200px 200px 0 0; background-color: red; color: white; height: 8rem; width: 16rem; border-bottom: 25px solid black">
+              {% if  indexes[forloop.index0] > 10000%}
+                {{"alt form"}}
+              {% else %}
+                {{ indexes[forloop.index0] }}
+              {% endif %}
+               <br>{{ pkmn.name }}</h4>
 
             <div class="card-body">
               <img
