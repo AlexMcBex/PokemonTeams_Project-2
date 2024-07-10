@@ -1,31 +1,31 @@
 {% layout 'layout.liquid' %}
 {% block content %}
   <div class="container-md">
-    <a href="/pokemon/Dex?offset=0&limit=27"><img class="ms-3 mt-3 mb-3 " src="https://i.pinimg.com/originals/bd/cd/20/bdcd20f5411ee5785889542d303ad4cb.png" alt="Pokedex" style="width: 300px;"> </a> <br>
+    <a href="/pokedex?offset=0&limit=27"><img class="ms-3 mt-3 mb-3 " src="https://i.pinimg.com/originals/bd/cd/20/bdcd20f5411ee5785889542d303ad4cb.png" alt="Pokedex" style="width: 300px;"> </a> <br>
     <h2 class="mt-1" style="display: inline;"><i>{{ firstlist }} - {{ pokemonNext }}</i></h2> 
     {% if offNum > 0 %} 
-      <a href="/pokemon/Dex?offset={{ pokemonPre }}&limit=27" class="btn btn-warning ms-3" style="width: 200px; ">Previous Page</a>
+      <a href="/pokedex?offset={{ pokemonPre }}&limit=27" class="btn btn-warning ms-3" style="width: 200px; ">Previous Page</a>
       {% else %}
       <div class="btn ms-3" style="width: 150px; background: rgb(180, 168, 103)">Previous Page</div>
       {% endif %}
       {% if offNum == 1269 %}
       <div class="btn ms-3" style="width: 150px; background: rgb(180, 168, 103)">Next Page</div> 
       {% else %}
-      <a href="/pokemon/Dex?offset={{ pokemonNext }}&limit=27" class="btn btn-warning ms-3" style="width: 150px;  ">Next Page</a>
+      <a href="/pokedex?offset={{ pokemonNext }}&limit=27" class="btn btn-warning ms-3" style="width: 150px;  ">Next Page</a>
       {% endif %}
       <br>
       <div class="row">
-        <form action="/pokemon/Dex/search?{{ nameTBF }}" method="GET">
+        <form action="/pokedex/search?{{ nameTBF }}" method="GET">
         <input style="width: 160px; height: 40px; border-radius: 3px;"  class="ms-3 mt-3" type="text" name="name" placeholder="Search by Name..."><input type="submit" class="btn btn-success" value="Search" style="width: 80px; height: 40px"></form>
-        <a href="/pokemon/Dex/type" class="btn btn-primary ms-3 mt-3" style="width: 200px; ">Filter by Type</a>
-        <a href="/pokemon/Dex/region" class="btn btn-primary ms-3 mt-3" style="width: 200px; ">Filter by Region</a>
+        <a href="/pokedex/type" class="btn btn-primary ms-3 mt-3" style="width: 200px; ">Filter by Type</a>
+        <a href="/pokedex/region" class="btn btn-primary ms-3 mt-3" style="width: 200px; ">Filter by Region</a>
       </div>
       <div class="row mt-3">
 
       {% for pkmn in pokemonData %}
         <div class="card ps-0 ms-3 mb-3" style="width: 16rem; border-radius: 200px; padding-left: -1px; height: 16rem; text-align: center; ">
 
-          <a style="text-transform: capitalize; text-decoration: none; border-radius: 200px 200px 200px 200px;" href="/pokemon/Dex/{{ pkmn.name }}" class="">
+          <a style="text-transform: capitalize; text-decoration: none; border-radius: 200px 200px 200px 200px;" href="/pokedex/{{ pkmn.name }}" class="">
 
           <h4 class="pt-3 mt-0 mb-0 ms-0"style="text-transform: capitalize; border-radius: 200px 200px 0 0; background-color: red; color: white; height: 8rem; width: 16rem; border-bottom: 25px solid black">{{ forloop.index | plus: offNum }} <br>{{ pkmn.name }} </h4>
 
@@ -44,14 +44,14 @@
       <br>
       <h2 class="mt-1" style="display: inline;"><i>{{ firstlist }} - {{ pokemonNext }}</i></h2> 
     {% if offNum > 0 %} 
-      <a href="/pokemon/Dex?offset={{ pokemonPre }}&limit=27" class="btn btn-warning ms-3" style="width: 200px; ">Previous Page</a>
+      <a href="/pokedex?offset={{ pokemonPre }}&limit=27" class="btn btn-warning ms-3" style="width: 200px; ">Previous Page</a>
       {% else %}
       <div class="btn ms-3" style="width: 150px; background: rgb(180, 168, 103)">Previous Page</div>
       {% endif %}
       {% if offNum == 1269 %}
       <div class="btn ms-3" style="width: 150px; background: rgb(180, 168, 103)">Next Page</div> 
       {% else %}
-      <a href="/pokemon/Dex?offset={{ pokemonNext }}&limit=27" class="btn btn-warning ms-3" style="width: 150px;  ">Next Page</a>
+      <a href="/pokedex?offset={{ pokemonNext }}&limit=27" class="btn btn-warning ms-3" style="width: 150px;  ">Next Page</a>
       {% endif %}
     <div class="row mt-3">
       </div>

@@ -1,29 +1,58 @@
 {% layout 'layout.liquid' %}
 {% block content %}
   <div class="container-md">
-    <a href="/pokemon/Dex?offset=0&limit=27"><img class="ms-3 mt-3 mb-3 " src="https://i.pinimg.com/originals/bd/cd/20/bdcd20f5411ee5785889542d303ad4cb.png" alt="Pokedex" style="width: 300px;"> </a><br>
+    <a href="/pokedex?offset=0&limit=27"><img
+        class="ms-3 mt-3 mb-3 "
+        src="https://i.pinimg.com/originals/bd/cd/20/bdcd20f5411ee5785889542d303ad4cb.png"
+        alt="Pokedex"
+        style="width: 300px;">
+    </a><br>
     <div class="row">
-          <h2> Results found for "<i>{{ nameTBF }}</i> "</h2> 
-        <form action="/pokemon/Dex/search?{{ nameTBF }}" method="GET">
-      <input style="width: 160px; height: 40px; border-radius: 3px;"  class="ms-3 mt-3" type="text" name="name" placeholder="Search by Name..." ><input type="submit" class="btn btn-success" value="Search" style="width: 80px; height: 40px"></form>
-        <a href="/pokemon/Dex/type" class="btn btn-primary ms-3 mt-3" style="width: 200px; ">Filter by Type</a>
-        <a href="/pokemon/Dex/region" class="btn btn-primary ms-3 mt-3" style="width: 200px; ">Filter by Region</a>
-      </div>
-      <div class="row mt-3">
+      <h2>
+        Results found for "<i>{{ nameTBF }}</i>
+        "</h2>
+      <form action="/pokedex/search?{{ nameTBF }}" method="GET">
+        <input
+          style="width: 160px; height: 40px; border-radius: 3px;"
+          class="ms-3 mt-3"
+          type="text"
+          name="name"
+          placeholder="Search by Name..."><input
+          type="submit"
+          class="btn btn-success"
+          value="Search"
+          style="width: 80px; height: 40px"></form>
+      <a
+        href="/pokedex/type"
+        class="btn btn-primary ms-3 mt-3"
+        style="width: 200px; ">Filter by Type</a>
+      <a
+        href="/pokedex/region"
+        class="btn btn-primary ms-3 mt-3"
+        style="width: 200px; ">Filter by Region</a>
+    </div>
+    <div class="row mt-3">
 
       {% for pkmn in filtered %}
         <div class="card ps-0 ms-3 mb-3" style="width: 16rem; border-radius: 200px; padding-left: -1px; height: 16rem; text-align: center; ">
 
-          <a style="text-transform: capitalize; text-decoration: none; border-radius: 200px 200px 200px 200px;" href="/pokemon/Dex/{{ pkmn.name }}" class="">
+          <a
+            style="text-transform: capitalize; text-decoration: none; border-radius: 200px 200px 200px 200px;"
+            href="/pokedex/{{ pkmn.name }}"
+            class="">
 
-          <h4 class="pt-3 mt-0 mb-0 ms-0"style="text-transform: capitalize; border-radius: 200px 200px 0 0; background-color: red; color: white; height: 8rem; width: 16rem; border-bottom: 25px solid black">{{ indexes[forloop.index0] }} <br>{{ pkmn.name }} </h4>
+            <h4 class="pt-3 mt-0 mb-0 ms-0" style="text-transform: capitalize; border-radius: 200px 200px 0 0; background-color: red; color: white; height: 8rem; width: 16rem; border-bottom: 25px solid black">{{ indexes[forloop.index0] }} <br>{{ pkmn.name }}</h4>
 
-          <div class="card-body">
-               <img class="mt-0 mb-0"src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ indexes[forloop.index0] }}.png" style="width:96px; height:96px" alt="N/A">
-            
-               </div>
-               </a>
+            <div class="card-body">
+              <img
+                class="mt-0 mb-0"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ indexes[forloop.index0] }}.png"
+                style="width:96px; height:96px"
+                alt="N/A">
+
+            </div>
+          </a>
         </div>
       {% endfor %}
-  </div>
-{% endblock %}
+    </div>
+  {% endblock %}

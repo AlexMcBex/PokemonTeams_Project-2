@@ -15,12 +15,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             {% if loggedIn %}
-            <a href="/pokemon/Dex?offset=0&limit=27" class="nav-link text-light me-3">PokeDex</a>
+            <a href="/pokedex?offset=0&limit=27" class="nav-link text-light me-3">PokeDex</a>
             <a href="/team" class="nav-link text-light me-3">Teams</a>
             <a href="/team/new" class="nav-link text-light me-3">New Team</a>
             <a href="/auth/logout" class="nav-link text-light me-3">Log Out</a>
             {% else %}
-            <a href="/pokemon/Dex?offset=0&limit=27" class="nav-link text-light me-3">PokeDex</a>
+            <a href="/pokedex?offset=0&limit=27" class="nav-link text-light me-3">PokeDex</a>
             <a href="/team" class="nav-link text-light me-3">Teams</a>
             <a href="/auth/signup" class="nav-link text-light me-3">Sign Up</a>
             <a href="/auth/login" class="nav-link text-light me-3">Sign In</a>

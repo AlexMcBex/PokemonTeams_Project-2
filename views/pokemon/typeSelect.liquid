@@ -1,16 +1,21 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-<div class="container-md">
-  <h2 class="mt-1" style="display: inline;">Filter By Type  </h2> <br>
-  <a href="/pokemon/Dex" class="btn btn-warning ms-3" style="width: 200px; ">Go Back</a>
-  <div class="row mt-3">
-    {% for type in typeData %}
-        <a href="/pokemon/Dex/type/{{ type.name }}">
-      <div class="btn {{ type.name }} ms-3 mb-3">
-        <h3 style="text-transform: capitalize; display: inline;">{{ type.name }}</h3>
+  <div class="container-md">
+    <h2 class="mt-1" style="display: inline;">Filter By Type
+    </h2>
+    <br>
+    <a
+      href="/pokedex"
+      class="btn btn-warning ms-3"
+      style="width: 200px; ">Go Back</a>
+    <div class="row mt-3">
+      {% for type in typeData %}
+        <a href="/pokedex/type/{{ type.name }}">
+          <div class="btn {{ type.name }} ms-3 mb-3">
+            <h3 style="text-transform: capitalize; display: inline;">{{ type.name }}</h3>
           </div>
-          </a>
-        {% endfor %}
+        </a>
+      {% endfor %}
     </div>
-</div>
-        {% endblock %}
+  </div>
+{% endblock %}
