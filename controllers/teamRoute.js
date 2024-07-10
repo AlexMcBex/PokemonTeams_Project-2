@@ -125,8 +125,8 @@ router.get('/:teamId/search', async (req, res, pkmn) => {
 	for (let i = 0; i < pokemonData.length; i++){
 		if (pokemonData[i].name.includes(nameLow)){
 			filtered.push(pokemonData[i])
-			if((pokemonData.indexOf(pokemonData[i]) + 1) > 1008){
-				indexes.push((pokemonData.indexOf(pokemonData[i]) + 8993))
+			if((pokemonData.indexOf(pokemonData[i]) + 1) > 1024){
+				indexes.push((pokemonData.indexOf(pokemonData[i]) + 8976))
 			}else{
 				indexes.push((pokemonData.indexOf(pokemonData[i]) + 1))
 			}
