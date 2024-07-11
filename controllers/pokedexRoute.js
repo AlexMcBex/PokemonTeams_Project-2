@@ -24,7 +24,7 @@ router.get('/', async(req, res) => {
 	const pokemonInfo = await axios(`${process.env.POKEAPI_URL}/pokemon/?offset=${offset}&limit=${limit}`)
 	const pokemonData = pokemonInfo.data.results
 	// console.log(pokemonData)
-	res.render('pokemon/Dex', { pokemonData, offNum, offNum, firstlist, pokemonNext, pokemonPre, ...req.session })
+	res.render('pokedex/index', { pokemonData, offNum, offNum, firstlist, pokemonNext, pokemonPre, ...req.session })
 })
 
 // POKEDEX SEARCH -> Search in Pokedex by name
@@ -46,14 +46,14 @@ router.get('/search', async (req, res, pkmn) => {
 		}
 	}
 	console.log(nameLow)
-	res.render('pokemon/DexSearch', { nameTBF, nameLow, indexes, filtered, pokemonData, ...req.session })
+	res.render('pokedex/search', { nameTBF, nameLow, indexes, filtered, pokemonData, ...req.session })
 })
 
 // POKEDEX - Filter Pokemons by Type
 router.get('/type/', async (req, res) => {
 	const typeInfo = await axios(`${process.env.POKEAPI_URL}/type/`)
 	const typeData = typeInfo.data.results
-	res.render('pokemon/typeSelect', { typeData, ...req.session })
+	res.render('pokedex/typeSelect', { typeData, ...req.session })
 })
 
 
@@ -69,13 +69,13 @@ router.get('/type/:typeName/', async (req, res) => {
 	const pokemonNext = (offNum + limitNum)
 	const firstlist = (offNum + 1)
 	const pokemonPre = (offNum - limitNum)
-	res.render('pokemon/typeDex', { pokemonData, offNum, firstlist, pokemonNext, typeName, pokemonPre, ...req.session })
+	res.render('pokedex/typeDex', { pokemonData, offNum, firstlist, pokemonNext, typeName, pokemonPre, ...req.session })
 }
 )
 
 // POKEDEX - pick filter by region
 router.get('/region/', (req, res) => {
-	res.render('pokemon/regionSelect', { ...req.session })
+	res.render('pokedex/regionSelect', { ...req.session })
 })
 
 
@@ -87,7 +87,7 @@ router.get('/:name', async (req, res) => {
 	pokemonPre = pokemonData.id - 1
 	pokemonNext = pokemonData.id + 1
 	const { username, loggedIn, userId } = req.session
-	res.render('pokemon/DexShow', { username, pokemonData, pokemonPre, pokemonNext, loggedIn, userId })
+	res.render('pokedex/show', { username, pokemonData, pokemonPre, pokemonNext, loggedIn, userId })
 })
 
 
@@ -100,7 +100,7 @@ router.get('/:id', async (req, res) => {
 	pokemonNext = pokemonData.id + 1
 	// console.log(pokemonData)
 	const { username, loggedIn, userId } = req.session
-	res.render('pokemon/DexShow', { username, pokemonData, pokemonPre, pokemonNext, loggedIn, userId })
+	res.render('pokedex/show', { username, pokemonData, pokemonPre, pokemonNext, loggedIn, userId })
 })
 
 
