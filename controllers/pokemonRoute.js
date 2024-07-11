@@ -72,38 +72,6 @@ router.get('/addToTeam/:pokemonName', async (req, res) => {
 		})
 })
 
-// // edit route -> GET that takes us to the edit form view- OBSOLETE
-// router.get('/:id/edit', (req, res) => {
-// 	// we need to get the id
-// 	const { username, userId, loggedIn } = req.session
-// 	const pokemonId = req.params.id
-// 	Pokemon.findById(pokemonId)
-// 		.then(pokemon => {
-// 			res.render('pokemon/edit', { pokemon, ...req.session })
-// 		})
-// 		.catch((error) => {
-// 			res.redirect(`/error?error=${error}`)
-// 		})
-// })
-
-// // update route
-// router.put('/:id/edit', (req, res) => {
-// 	const pokemonId = req.params.id
-// 	Pokemon.findByIdAndUpdate(pokemonId, req.body, { new: true })
-// 		.then(pokemon => {
-// 			res.redirect(`/pokemon/${pokemonId}`)
-// 		})
-// 		.catch((error) => {
-// 			res.redirect(`/error?error=${error}`)
-// 		})
-// })
-
-// // new route -> GET route that renders our page with the form - OBSOLETE
-// router.get('/new', (req, res) => {
-// 	const { username, userId, loggedIn } = req.session
-// 	res.render('pokemon/new', { username, loggedIn })
-// })
-
 // SHOW - Show pokemon instance in a team - OBSOLETE?
 router.get('/:teamId/:id', async (req, res) => {
 	const teamId = req.params.teamId
@@ -156,39 +124,6 @@ router.post('/', (req, res) => {
 			res.redirect(`/error?error=${error}`)
 		})
 })
-
-// // GET request -> edit route - OBSOLETE
-// router.get('/:id/edit', (req, res) => {
-// 	const pokemonId = req.params.id
-// 	Pokemon.findById(pokemonId)
-// 		.then(pokemon => {
-// 			res.render('pokemon/edit', { pokemon, ...req.session })
-// 		})
-// 		.catch(err => {
-// 			res.redirect(`/error?error=${err}`)
-// 		})
-// })
-
-// // PUT route -> edit route
-// router.put('/:id', (req, res) => {
-// 	const id = req.params.id
-// 	Pokemon.findById(id)
-// 		.then(pokemon => {
-// 			if (pokemon.owner == req.session.userId) {
-// 				return pokemon.updateOne(req.body)
-// 			} else {
-// 				res.redirect(`/error?error=You%20Are%20not%20allowed%20to%20edit%20this%20Pokemon`)
-// 			}
-// 		})
-// 		.then(() => {
-// 			res.redirect(`/pokemon/${id}`)
-// 		})
-// 		.catch(err => {
-// 			console.log(err)
-// 			res.redirect(`/error?error=${err}`)
-// 		})
-// })
-
 
 // delete route
 router.delete('/:id', (req, res) => {
