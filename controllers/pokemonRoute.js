@@ -33,7 +33,7 @@ router.use((req, res, next) => {
 		next()
 	} else {
 		// if they're not logged in, send them to the login page
-		res.redirect('/auth/login')
+		res.redirect('/auth/login?redirect=true')
 	}
 })
 // ROUTES BELOW HERE REQUIRE LOGGEDIN////////////////////////////////////////////////

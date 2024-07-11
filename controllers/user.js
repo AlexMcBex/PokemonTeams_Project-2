@@ -42,7 +42,8 @@ router.post('/signup', async (req, res) => {
 // two login routes
 // get to render the login form
 router.get('/login', (req, res) => {
-	res.render('auth/login')
+	const redirect = req.query.redirect
+	res.render('auth/login', {redirect})
 })
 // post to send the login info(and create a session)
 router.post('/login', async (req, res) => {
