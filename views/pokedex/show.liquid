@@ -11,10 +11,10 @@
             
         <img src="{{ pokemonData.sprites.other.official-artwork.front_default }}" alt="artwork">
 
-        <h3 style="text-transform: capitalize;">
+        <h3 style="text-transform: capitalize; padding: 3px">
             Type: 
-            <span class="{{ pokemonData.types.0.type.name }}">{{ pokemonData.types.0.type.name }}</span> 
-        <span class="{{ pokemonData.types.1.type.name }}"> {{ pokemonData.types.1.type.name }}</span>
+            <span class="{{ pokemonData.types.0.type.name }} p-1 rounded">{{ pokemonData.types.0.type.name }}</span> 
+        <span class="{{ pokemonData.types.1.type.name }} p-1 rounded"> {{ pokemonData.types.1.type.name }}</span>
         </h3>
 
         <div style="width: 50%; text-transform: capitalize; background: rgba(0, 0, 0, 0.1); border: 2px solid black; border-radius: 5px; padding: 5px;" >
